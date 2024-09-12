@@ -1,150 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --background-color: #ecf0f1;
-    --text-color: #333;
-    --accent-color: #e74c3c;
-}
-
-* {
-    box-sizing: border-box;
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
+    background-color: #f5f5f5;
 }
 
 header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-main {
-    padding: 40px 0;
-}
-
-h2 {
-    color: var(--secondary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.section {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 30px;
-}
-
-.contact-info {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 30px;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
 }
 
-.contact-info div {
-    flex-basis: calc(50% - 10px);
-    margin-bottom: 10px;
-}
-
-.experience-item, .education-item {
-    margin-bottom: 20px;
-}
-
-.experience-item h3, .education-item h3 {
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-
-.organization {
+.logo {
     font-weight: bold;
 }
 
-.date-location {
-    font-style: italic;
-    color: #7f8c8d;
-    margin-bottom: 10px;
+.highlight {
+    color: #0000ff;
 }
 
-ul {
-    padding-left: 20px;
-}
-
-.skills, .languages, .hobbies {
+nav ul {
+    list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
 }
 
-.skill, .language, .hobby {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+nav ul li {
+    margin-left: 20px;
 }
 
-.skill:hover, .language:hover, .hobby:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+nav ul li a {
+    text-decoration: none;
+    color: #333;
 }
 
-.publications li {
+main {
+    display: flex;
+    padding: 50px;
+}
+
+.left-side {
+    flex: 1;
+    background-color: #e6e6e6;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-icon {
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.right-side {
+    flex: 2;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 4em;
     margin-bottom: 10px;
+}
+
+.cta-buttons {
+    margin-top: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0000ff;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.button.outline {
+    background-color: transparent;
+    border: 2px solid #0000ff;
+    color: #0000ff;
 }
 
 footer {
-    background-color: var(--secondary-color);
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9rem;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (max-width: 768px) {
-    .contact-info div {
-        flex-basis: 100%;
-    }
+.footer-contact {
+    display: flex;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.contact-item {
+    margin-left: 30px;
 }
 
-.section {
-    animation: fadeIn 0.5s ease-out forwards;
+.contact-item h4 {
+    margin-bottom: 5px;
 }
-
-.section:nth-child(1) { animation-delay: 0.1s; }
-.section:nth-child(2) { animation-delay: 0.2s; }
-.section:nth-child(3) { animation-delay: 0.3s; }
-.section:nth-child(4) { animation-delay: 0.4s; }
-.section:nth-child(5) { animation-delay: 0.5s; }
-.section:nth-child(6) { animation-delay: 0.6s; }
-.section:nth-child(7) { animation-delay: 0.7s; }
