@@ -7,7 +7,7 @@ const StudiesContainer = styled.div`
 `;
 
 const StudyCard = styled.div`
-  background: ${({ theme }) => theme.colors.background.white};
+  background: ${({ theme }) => theme.colors.secondary_background.white};
   border-radius: 12px;
   padding: ${({ theme }) => theme.spacing.md};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

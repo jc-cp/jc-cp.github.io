@@ -2,17 +2,18 @@ export const theme = {
   colors: {
     primary: '#2c3e50',    // Dark blue-gray
     secondary: '#34495e',  // Medium blue-gray
+    background: '#242424',
     text: {
-      primary: '#2d3748',  // Dark gray for main text
-      secondary: '#4a5568', // Medium gray for secondary text
-      light: '#ecf0f1',    // Light gray for text on dark backgrounds
-      white: '#ffffff',    // White text
+      primary: '#2c3e50',
+      secondary: '#4a5568',
+      light: '#ecf0f1',
+      white: '#ffffff',
     },
-    background: {
-      main: '#f8f9fa',     // Light gray background
-      white: '#ffffff',    // White background
+    secondary_background: {
+      main: '#242424',
+      white: '#ffffff',
     },
-    border: 'rgba(0, 0, 0, 0.1)',
+    border: 'rgba(255, 255, 255, 0.1)',
   },
   spacing: {
     xs: '0.5rem',

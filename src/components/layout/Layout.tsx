@@ -129,7 +129,7 @@ export const Section = styled.section`
   width: 100%;
   padding: ${({ theme }) => theme.spacing.md};
   margin-bottom: ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.background.white};
+  background: ${({ theme }) => theme.colors.secondary_background.white};
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -138,23 +138,6 @@ export const Section = styled.section`
   &:not(:last-child) {
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   }
-
-  h2 {
-    color: ${({ theme }) => theme.colors.text.primary};
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.text.secondary};
-  }
-`;
-
-const HomeSection = styled.section`
-  width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  background: transparent;
-  position: relative;
-  z-index: 1;
 
   h2 {
     color: ${({ theme }) => theme.colors.text.primary};
@@ -279,9 +262,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         <ParticlesContainer>
           <ParticlesBackground />
         </ParticlesContainer>
-        <HomeSection>
-          {children}
-        </HomeSection>
+        {children}
 
         <Section>
           <h2>Featured Projects</h2>
