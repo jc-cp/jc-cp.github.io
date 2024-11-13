@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ParticlesBackground } from '../ParticlesBackground';
+import profileImage from '../../assets/profile.jpg';
 
 const LayoutWrapper = styled.div`
   display: grid;
@@ -245,7 +246,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       <Sidebar>
         <ProfileSection>
           <ProfileWrapper>
-            <ProfilePicture src="src/assets/profile.jpg" alt="JC Climent" />
+            <ProfilePicture src={profileImage} alt="JC Climent" />
             <ProfileInfo>
               <h2>JC Climent</h2>
               <p>AI & Robotics Engineer</p>
