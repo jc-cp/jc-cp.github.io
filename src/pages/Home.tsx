@@ -3,6 +3,7 @@ import { FaLinkedin, FaGithub, FaUserGraduate } from 'react-icons/fa';
 import { SiMedium, SiOrcid } from 'react-icons/si';
 import { Section } from '../components/layout/Layout';
 import profileImage from '../assets/profile.jpg';
+import constructionGif from '../assets/under-construction.gif';  // Import your GIF
 
 const ProfilePicture = styled.img`
   width: 150px;
@@ -93,6 +94,18 @@ const EnhancedSocialIcon = styled(SocialIcon)`
 `;
 
 
+const DisclaimerSection = styled(Section)`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+const DisclaimerGif = styled.img`
+  width: 50px;  // Adjust size as needed
+  height: 50px;
+  object-fit: contain;
+`;
+
 export const Home = () => {
   return (
     <>
@@ -146,10 +159,22 @@ export const Home = () => {
       <Section id="about">
         <h2>About Me</h2>
         <p>
-          I'm Juan Carlos, a Software and Robotics Engineer passionate about 
-          creating innovative solutions at the intersection of AI and robotics.
+          Hey there! I'm Juan Carlos, or Jc, a Robotics & AI Software Engineer passionate about 
+          building innovative and revolutionazing solutions in the healthcare space.
         </p>
       </Section>
+
+       <DisclaimerSection>
+         <DisclaimerGif 
+           src={constructionGif} 
+           alt="Under Construction"
+         />
+         <div>
+           <h2>Disclaimer</h2>
+           <p>This website is a work in progress right now and is not yet fully functional!</p>
+         </div>
+       </DisclaimerSection>
+
     </>
   );
 };
