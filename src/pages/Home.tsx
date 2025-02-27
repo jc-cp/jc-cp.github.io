@@ -160,7 +160,7 @@ export const Home = () => {
         <h2>About Me</h2>
         <p>
           Hey there! I'm Juan Carlos, or Jc, a Robotics & AI Software Engineer passionate about 
-          building innovative and revolutionazing solutions in the healthcare space.
+          building revolutionazing solutions in the healthcare and defense space.
         </p>
       </Section>
 

@@ -57,6 +57,7 @@ export const Studies = () => {
     <PageContainer>
       <PageTitle>Academic Journey</PageTitle>
       <Timeline>
+
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={90}>
@@ -168,21 +169,21 @@ export const Studies = () => {
               </Tags>
               <AchievementsList>
                 <li>
-                  Project on Trend Research:
+                  Project:
                   <InteractiveLink to="/projects#cdtm-trend-research">
-                    "The future of AI and Climate Change"
+                    Trend Research -- "The future of AI and Climate Change"
                   </InteractiveLink>
                 </li>
                 <li>
-                  Project on Product Development:
+                  Project:
                   <InteractiveLink to="/projects#cdtm-product-development">
-                    "Akina: AI-powered car matching tool"
+                    Product Development -- "Akina: AI-powered car matching tool"
                   </InteractiveLink>
                 </li>
                 <li>
-                  Project on Business Strategy:
+                  Project:
                   <InteractiveLink to="/projects#cdtm-business-strategy">
-                    "US Market Entry for an Austrian startup"
+                    Business Strategy -- "US Market Entry for an Austrian startup"
                   </InteractiveLink>
                 </li>
               </AchievementsList>
@@ -210,19 +211,19 @@ export const Studies = () => {
               </Tags>
               <AchievementsList>
                 <li>
-                  Working Student at{' '}
+                  Working Student:{' '}
                   <InteractiveLink to="/experience#ryver">
                     Ryver.ai GmbH
                   </InteractiveLink>
                 </li>
                 <li>
-                  Working Student at{' '}
+                  Working Student:{' '}
                   <InteractiveLink to="/experience#motius">
                     Motius GmbH
                   </InteractiveLink>
                 </li>
                 <li>
-                  Working Student at{' '}
+                  Working Student:{' '}
                   <InteractiveLink to="/experience#tum-mri">
                     Hospital Klinikum rechts der Isar
                   </InteractiveLink>
@@ -266,13 +267,19 @@ export const Studies = () => {
                 <li>
                   Project: {''}
                   <InteractiveLink to="/projects#ka-raceing">
-                    "Formula Student Team Lead KA-RaceIng e.V."
+                    Formula Student Team Lead at KA-RaceIng e.V.
                   </InteractiveLink>
                 </li>
                 <li>
-                  Working Student at{' '}
+                  Working Student:{' '}
                   <InteractiveLink to="/experience#fraunhofer">
                     Fraunhofer Institute for New Drive Systems (NAS-ICT)
+                  </InteractiveLink>
+                </li>
+                <li>
+                   Activities: {''}
+                  <InteractiveLink to="/hobbies#triathlon">
+                    University Triathlon Team -- Karlsruher Lemminge
                   </InteractiveLink>
                 </li>
                 <li>
