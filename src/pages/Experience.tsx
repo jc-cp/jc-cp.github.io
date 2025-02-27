@@ -26,9 +26,7 @@ export const Experience = () => {
               <AchievementsList>
                 <li>
                   Project:
-                  <InteractiveLink to="/projects#google-search">
-                    Google Search
-                  </InteractiveLink>
+
                 </li>
               </AchievementsList>
             </ContentContainer>

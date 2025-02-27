@@ -100,11 +100,39 @@ export const Subtitle = styled.h4`
 export const Period = styled.span`
   color: ${({ theme }) => theme.colors.text.secondary};
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xs};
+  
+  svg {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 export const Description = styled.p`
   color: ${({ theme }) => theme.colors.text.secondary};
   margin-top: ${({ theme }) => theme.spacing.sm};
+`;
+
+export const Location = styled.span`
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xs};
+  
+  svg {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const PeriodLocation = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: ${({ theme }) => theme.spacing.md};
+  align-items: center;
 `;
 
 // Logo Components
@@ -145,6 +173,32 @@ export const Tag = styled.span`
 
 // Links
 export const InteractiveLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.primary};
+  text-decoration: none;
+  position: relative;
+  padding: 2px 4px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: ${({ theme }) => theme.colors.primary};
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+`;
+
+// External URL Link
+export const ExternalLink = styled.a`
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   position: relative;

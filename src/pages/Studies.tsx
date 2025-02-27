@@ -21,9 +21,13 @@ import {
   Description,
   Tags,
   Tag,
+  Location,
+  PeriodLocation,
   InteractiveLink,
+  ExternalLink,
   AchievementsList,
 } from '../components/SharedStyles';
+import { FaRegCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -65,6 +69,7 @@ export const Studies = () => {
       <PageTitle>Academic Journey</PageTitle>
       <Timeline>
 
+        {/* Harvard Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={90}>
@@ -73,9 +78,17 @@ export const Studies = () => {
             <ContentContainer>
               <Title>Visting Researcher</Title>
               <Subtitle>Harvard University</Subtitle>
-              <Period>2023-2024</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2023-2024
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  Boston, MA, USA
+                </Location>
+              </PeriodLocation>
               <Description>
-                1.5 years research stay with focus on clinical and radiation neuro-oncology, medical image analysis, and deep learning.
+                1.5 years research stay at the AI in Medicine (AIM) Lab. Focus on clinical and radiation neuro-oncology, medical image analysis, and deep learning.
               </Description>
               <Tags>
                 <Tag>Clinical / Radiation Oncology</Tag>
@@ -97,6 +110,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
 
+        {/* UCL Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={110}>
@@ -105,7 +119,15 @@ export const Studies = () => {
             <ContentContainer>
               <Title>Medical Imaging Computing Summer School (MICSS)</Title>
               <Subtitle>University College London (UCL)</Subtitle>
-              <Period>2024</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2024
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  London, UK (remote from the US)
+                </Location>
+              </PeriodLocation>
               <Description>
                 Intensive course on medical image analysis, medical informatics, robotics, and machine learning.
               </Description>
@@ -119,6 +141,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
           
+        {/* BEA Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={70}>
@@ -127,12 +150,20 @@ export const Studies = () => {
             <ContentContainer>
               <Title>Honors Degree: Leadership, Management, Responsibility</Title>
               <Subtitle>Bavarian Elite Academy (BEA)</Subtitle>
-                <Period>2022 - 2024</Period>
-                <Description>
-                  Add-on training program that supports 35 outstanding, high-achieving students from Bavarian universities in their development into responsible leaders, with academies abroad in Israel and Brussels and accompanied by high-ranking mentors from the business world. Part of the 24th academic year.
-                </Description>
-                <Tags>
-                  <Tag>Leadership</Tag>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2022 - 2024
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  Munich, Germany
+                </Location>
+              </PeriodLocation>
+              <Description>
+                Add-on training program that supports 35 outstanding, high-achieving students from Bavarian universities in their development into responsible leaders, with academies abroad in Israel and Brussels and accompanied by high-ranking mentors from the business world. Part of the 24th academic year.
+              </Description>
+              <Tags>
+                <Tag>Leadership</Tag>
                   <Tag>Management</Tag>
                   <Tag>Responsibility</Tag>
                   <Tag>Video Production</Tag>
@@ -140,13 +171,13 @@ export const Studies = () => {
                 <AchievementsList>
                   <li>
                     Project: {''}
-                    <InteractiveLink to="/projects#bea-video-production">
+                    <InteractiveLink to="/hobbies#bea-video-production">
                       "Promotion Video Production"
                     </InteractiveLink>
                   </li>
                   <li>
                     Project: {''}
-                    <InteractiveLink to="/projects#bea-video-production">
+                    <InteractiveLink to="/hobbies#outdoor-video-production">
                       "Outdoor Video Production"
                     </InteractiveLink>
                   </li>
@@ -156,6 +187,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
 
+        {/* CDTM Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={100}>
@@ -164,7 +196,15 @@ export const Studies = () => {
             <ContentContainer>
               <Title>Honors Degree: Technology Management</Title>
               <Subtitle>Center for Digital Technology and Management (CDTM)</Subtitle>
-              <Period>2022 - 2023</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2022 - 2023
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  Munich, Germany
+                </Location>
+              </PeriodLocation>
               <Description>
                 The CDTM is a joint institution of the Ludwig Maximilian University of Munich (LMU) and the Technical University of Munich (TUM) offering the interdisciplinary add-on study program "Technology Management" as part of the Elite-Network of Bavaria.
                 Focus on trend research, product development, and business strategy with the goal of becoming a technology entrepreneur.
@@ -198,6 +238,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
 
+        {/* TUM Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={100}>
@@ -206,7 +247,15 @@ export const Studies = () => {
             <ContentContainer>
               <Title>M.Sc. in Robotics, Cognition, Intelligence</Title>
               <Subtitle>Technical University of Munich (TUM)</Subtitle>
-              <Period>2020 - 2024</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2020 - 2024
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  Munich, Germany
+                </Location>
+              </PeriodLocation>
               <Description>
                 Advanced studies in robotics and AI systems with focus on cognitive architectures.
               </Description>
@@ -246,6 +295,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
 
+        {/* KIT Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer zoom={100}>
@@ -254,7 +304,15 @@ export const Studies = () => {
             <ContentContainer>
               <Title>B.Sc. in Mechatronics and Information Technology</Title>
               <Subtitle>Karlsruhe Institute of Technology (KIT)</Subtitle>
-              <Period>2015 - 2020</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2015 - 2020
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />
+                  Karlsruhe, Germany
+                </Location>
+              </PeriodLocation>
               <Description>
                 Comprehensive foundation in mechatronics: mechanical engineering, electrical engineering, and information technology. Specialization in robotics and medical technology.
               </Description>
@@ -275,6 +333,12 @@ export const Studies = () => {
                   Project: {''}
                   <InteractiveLink to="/projects#ka-raceing">
                     Formula Student Team Lead at KA-RaceIng e.V.
+                  </InteractiveLink>
+                </li>
+                <li>
+                  Project: {''}
+                  <InteractiveLink to="/projects#grow-founding-contest">
+                    GROW Founding Contest Finalist
                   </InteractiveLink>
                 </li>
                 <li>
@@ -300,6 +364,7 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
       
+        {/* DSV Exprience */}
         <AnimatedTimelineItem>
           <Card>
             <LogoContainer>
@@ -308,27 +373,38 @@ export const Studies = () => {
             <ContentContainer>
               <Title>High School Diploma (Abitur / A-Levels)</Title>
               <Subtitle>German School of Valencia (Deustche Schule Valencia)</Subtitle>
-              <Period>2013 - 2015</Period>
+              <PeriodLocation>
+                <Period>
+                  <FaRegCalendarAlt />2013 - 2015
+                </Period>
+                <Location>
+                  <FaMapMarkerAlt />                                                                                                    Valencia, Spain
+                </Location>
+              </PeriodLocation>
               <Description>
                 Focus on Mathematics, Physics, Chemistry, Biology and Economics.
               </Description>
               <AchievementsList>
                 <li> Competition:
-                  <InteractiveLink to="/projects#dsv-olympiads">
+                  <ExternalLink href="https://www.ichosc.org/">
                     Chemistry Regional Olympiads
-                  </InteractiveLink>
+                  </ExternalLink>
                 </li>
                 <li> Competition:{' '}
-                  <InteractiveLink to="/experience#dsv-jugend">
+                  <ExternalLink href="https://www.jugend-forscht.de/">
                   Youth Researches (Jugend Forscht)
-                  </InteractiveLink>
+                  </ExternalLink>
                 </li>
                 <li>
                   Competition: {' '}
-                  <InteractiveLink to="/experience#dsv">
+                  <ExternalLink href="https://www.jugend-debattiert.de/">
                   Youth Debates (Jugend Debattiert)
-                  </InteractiveLink>
+                  </ExternalLink>
                 </li>
+                <li>
+                  Activities: Orchestral Musician, Basketball Player
+                </li>
+
               </AchievementsList>
             </ContentContainer>
           </Card>
