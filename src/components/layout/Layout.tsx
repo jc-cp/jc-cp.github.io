@@ -254,7 +254,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         </CTAButtons>
         <SidebarFooter>
           <p>© 2024 JC Climent. All rights reserved.</p>
-          <p>Email: your.email@example.com | Location: Munich, Germany</p>
+          <p>Email: jc.climentpardo@gmail.com | Location: Munich, Germany</p>
         </SidebarFooter>
       </Sidebar>
 
@@ -266,7 +266,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
 
         <Section>
           <h2>Featured Projects</h2>
-          <p>Showcase your key projects here.</p>
+          <p>Showcasing my key projects here.</p>
         </Section>
       </MainContent>
     </LayoutWrapper>

@@ -1,202 +1,29 @@
-import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import tumLogo from '../assets/tum.png';
-import kitLogo from '../assets/kit.png';
-import dsvLogo from '../assets/dsv.jpg';
-import cdtmLogo from '../assets/cdtm.jpg';
-
-const StudiesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.lg};
-  margin-bottom: ${({ theme }) => theme.spacing.xl}; // Add bottom margin
-
-`;
-
-const StudyCard = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.secondary_background.white}CC;
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: ${({ theme }) => theme.spacing.md};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
-  }
-`;
-
-const Timeline = styled.div`
-  position: relative;
-  padding-left: ${({ theme }) => theme.spacing.xl};
-  overflow: visible;
-`;
-
-const TimelinePoint = styled.div`
-  position: absolute;
-  left: -24px;
-  top: 40px;
-  width: 12px;
-  height: 12px;
-  background: #4ECDC4;
-  border-radius: 50%;
-  z-index: 3;
-  transform: translateX(-5px);
-  box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2);
-`;
-
-const TimelineItem = styled.div`
-  position: relative;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  padding-left: ${({ theme }) => theme.spacing.xl};
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const Icon = styled.div<{ isVisible: boolean }>`
-  position: absolute;
-  left: -29px;
-  top: 40px;
-  opacity: ${props => props.isVisible ? 1 : 0};
-  transition: opacity 0.5s ease;
-  z-index: 4;
-  transform-origin: 7px 0;
-  animation: ${props => props.isVisible ? 'orbitPoint 4s linear infinite' : 'none'};
-  
-  @keyframes orbitPoint {
-    from {
-      transform: rotate(0deg) translateX(20px) rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg) translateX(20px) rotate(-360deg);
-    }
-  }
-  
-  i {
-    font-size: 24px;
-    color: #FF6B6B;
-    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.4));
-  }
-`;
-
-const Degree = styled.h3`
-  color: ${({ theme }) => theme.colors.text.primary};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-const Institution = styled.h4`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  font-weight: 500;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-const Period = styled.span`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  font-size: 0.9rem;
-`;
-
-const Description = styled.p`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  margin-top: ${({ theme }) => theme.spacing.sm};
-`;
-
-const PageTitle = styled.h1`
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const LogoContainer = styled.div<{ zoom?: number }>`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-  img {
-    width: ${props => props.zoom ? `${props.zoom}%` : '90%'};
-    height: ${props => props.zoom ? `${props.zoom}%` : '90%'};
-    object-fit: contain;
-  }
-`;
-
-const StudyContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.xs};
-`;
-
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.xs};
-  margin-top: ${({ theme }) => theme.spacing.sm};
-`;
-
-const Tag = styled.span`
-  background: ${({ theme }) => theme.colors.secondary}20;
-  color: ${({ theme }) => theme.colors.secondary};
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 500;
-`;
-
-const InteractiveLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.primary};
-  text-decoration: none;
-  position: relative;
-  padding: 2px 4px;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: ${({ theme }) => theme.colors.primary};
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-`;
-
-const Achievements = styled.ul`
-  margin-top: ${({ theme }) => theme.spacing.sm};
-  padding-left: ${({ theme }) => theme.spacing.md};
-  
-  li {
-    color: ${({ theme }) => theme.colors.text.secondary};
-    margin-bottom: ${({ theme }) => theme.spacing.xs};
-    font-size: 0.9rem;
-    
-    &::marker {
-      color: ${({ theme }) => theme.colors.secondary};
-    }
-  }
-`;
+import tumLogo from '../assets/studies/tum.png';
+import kitLogo from '../assets/studies/kit.png';
+import dsvLogo from '../assets/studies/dsv.jpg';
+import cdtmLogo from '../assets/studies/cdtm.jpg';
+import beaLogo from '../assets/studies/bea.jpeg';
+import uclLogo from '../assets/studies/ucl.png';
+import harvardLogo from '../assets/studies/harvard.png';
+import {
+  PageContainer,
+  PageTitle,
+  Timeline,
+  TimelinePoint,
+  TimelineItem,
+  Card,
+  LogoContainer,
+  ContentContainer,
+  Title,
+  Subtitle,
+  Period,
+  Description,
+  Tags,
+  Tag,
+  InteractiveLink,
+  AchievementsList,
+} from '../components/SharedStyles';
 
 const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -220,9 +47,6 @@ const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <TimelineItem ref={itemRef}>
       <TimelinePoint />
-      <Icon isVisible={isVisible}>
-        <i className="fas fa-rocket" />
-      </Icon>
       {children}
     </TimelineItem>
   );
@@ -230,26 +54,150 @@ const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const Studies = () => {
   return (
-    <StudiesContainer>
+    <PageContainer>
       <PageTitle>Academic Journey</PageTitle>
       <Timeline>
-
         <AnimatedTimelineItem>
-          <StudyCard>
-            <LogoContainer zoom={120}>
-              <img src={cdtmLogo} alt="CDTM Logo" />
+          <Card>
+            <LogoContainer zoom={90}>
+              <img src={harvardLogo} alt="Harvard Logo" />
             </LogoContainer>
-          </StudyCard>
+            <ContentContainer>
+              <Title>Visting Researcher</Title>
+              <Subtitle>Harvard University</Subtitle>
+              <Period>2023-2024</Period>
+              <Description>
+                1.5 years research stay with focus on clinical and radiation neuro-oncology, medical image analysis, and deep learning.
+              </Description>
+              <Tags>
+                <Tag>Clinical / Radiation Oncology</Tag>
+                <Tag>Medical Imaging (MRI)</Tag>
+                <Tag>DL/ML</Tag>
+              </Tags>
+              <AchievementsList>
+                <li>
+                  Working experience: Associated with the research at Brigham and Women's Hospital and Harvard Medical School.
+                </li>
+                <li>
+                  Courses: Foundations of Biomedical Informatics (BMI 701), Computational Statistics for Biomedical Sciences (BMI 715), Applied Biostatistics (Harvard Catalyst), Harvard Clinical Informatics Lecture Series (HCLS), Natural Language Processing (HMX)
+                </li>
+                <li>
+                  Activities: Harvard Swimming Club, AI in Healthcare Student Association
+                </li>
+              </AchievementsList>
+            </ContentContainer>
+          </Card>
         </AnimatedTimelineItem>
 
         <AnimatedTimelineItem>
-          <StudyCard>
+          <Card>
+            <LogoContainer zoom={110}>
+              <img src={uclLogo} alt="UCL Logo" />
+            </LogoContainer>
+            <ContentContainer>
+              <Title>Medical Imaging Computing Summer School (MICSS)</Title>
+              <Subtitle>University College London (UCL)</Subtitle>
+              <Period>2024</Period>
+              <Description>
+                Intensive course on medical image analysis, medical informatics, robotics, and machine learning.
+              </Description>
+              <Tags>
+                <Tag>Medical Image Analysis</Tag>
+                <Tag>Medical Informatics</Tag>
+                <Tag>Robotics</Tag>
+                <Tag>Machine Learning</Tag>
+              </Tags>
+            </ContentContainer>
+          </Card>
+        </AnimatedTimelineItem>
+          
+        <AnimatedTimelineItem>
+          <Card>
+            <LogoContainer zoom={70}>
+              <img src={beaLogo} alt="BEA Logo" />
+            </LogoContainer>
+            <ContentContainer>
+              <Title>Honors Degree: Leadership, Management, Responsibility</Title>
+              <Subtitle>Bavarian Elite Academy (BEA)</Subtitle>
+                <Period>2022 - 2024</Period>
+                <Description>
+                  Add-on training program that supports 35 outstanding, high-achieving students from Bavarian universities in their development into responsible leaders, with academies abroad in Israel and Brussels and accompanied by high-ranking mentors from the business world. Part of the 24th academic year.
+                </Description>
+                <Tags>
+                  <Tag>Leadership</Tag>
+                  <Tag>Management</Tag>
+                  <Tag>Responsibility</Tag>
+                  <Tag>Video Production</Tag>
+                </Tags>
+                <AchievementsList>
+                  <li>
+                    Project: {''}
+                    <InteractiveLink to="/projects#bea-video-production">
+                      "Promotion Video Production"
+                    </InteractiveLink>
+                  </li>
+                  <li>
+                    Project: {''}
+                    <InteractiveLink to="/projects#bea-video-production">
+                      "Outdoor Video Production"
+                    </InteractiveLink>
+                  </li>
+
+                </AchievementsList>
+              </ContentContainer>
+          </Card>
+        </AnimatedTimelineItem>
+
+        <AnimatedTimelineItem>
+          <Card>
+            <LogoContainer zoom={100}>
+              <img src={cdtmLogo} alt="CDTM Logo" />
+            </LogoContainer>
+            <ContentContainer>
+              <Title>Honors Degree: Technology Management</Title>
+              <Subtitle>Center for Digital Technology and Management (CDTM)</Subtitle>
+              <Period>2022 - 2023</Period>
+              <Description>
+                The CDTM is a joint institution of the Ludwig Maximilian University of Munich (LMU) and the Technical University of Munich (TUM) offering the interdisciplinary add-on study program „Technology Management“ as part of the Elite-Network of Bavaria.
+                Focus on trend research, product development, and business strategy with the goal of becoming a technology entrepreneur.
+              </Description>
+              <Tags>
+                <Tag>Trend Research</Tag>
+                <Tag>Product Development</Tag>
+                <Tag>Business Strategy</Tag>
+              </Tags>
+              <AchievementsList>
+                <li>
+                  Project on Trend Research:
+                  <InteractiveLink to="/projects#cdtm-trend-research">
+                    "The future of AI and Climate Change"
+                  </InteractiveLink>
+                </li>
+                <li>
+                  Project on Product Development:
+                  <InteractiveLink to="/projects#cdtm-product-development">
+                    "Akina: AI-powered car matching tool"
+                  </InteractiveLink>
+                </li>
+                <li>
+                  Project on Business Strategy:
+                  <InteractiveLink to="/projects#cdtm-business-strategy">
+                    "US Market Entry for an Austrian startup"
+                  </InteractiveLink>
+                </li>
+              </AchievementsList>
+            </ContentContainer>
+          </Card>
+        </AnimatedTimelineItem>
+
+        <AnimatedTimelineItem>
+          <Card>
             <LogoContainer zoom={100}>
               <img src={tumLogo} alt="TUM Logo" />
             </LogoContainer>
-            <StudyContent>
-              <Degree>M.Sc. in Robotics, Cognition, Intelligence</Degree>
-              <Institution>Technical University of Munich (TUM)</Institution>
+            <ContentContainer>
+              <Title>M.Sc. in Robotics, Cognition, Intelligence</Title>
+              <Subtitle>Technical University of Munich (TUM)</Subtitle>
               <Period>2020 - 2024</Period>
               <Description>
                 Advanced studies in robotics and AI systems with focus on cognitive architectures.
@@ -260,7 +208,13 @@ export const Studies = () => {
                 <Tag>Deep Learning</Tag>
                 <Tag>Control Systems</Tag>
               </Tags>
-              <Achievements>
+              <AchievementsList>
+                <li>
+                  Working Student at{' '}
+                  <InteractiveLink to="/experience#ryver">
+                    Ryver.ai GmbH
+                  </InteractiveLink>
+                </li>
                 <li>
                   Working Student at{' '}
                   <InteractiveLink to="/experience#motius">
@@ -273,26 +227,25 @@ export const Studies = () => {
                     Hospital Klinikum rechts der Isar
                   </InteractiveLink>
                 </li>
-                <li>GPA: 1.9/1.0</li>
                 <li>
                   Master Thesis:{' '}
                   <InteractiveLink to="/projects#master-thesis">
-                    "Diagnosis and Growth Prognosis of pediatric low-grade gliomas (pLGGs) using AI and MRI"
+                    "Diagnosis and Growth Prognosis of pediatric low-grade gliomas (pLGGs) using AI and MR Imaging"
                   </InteractiveLink>
                 </li>
-              </Achievements>
-            </StudyContent>
-          </StudyCard>
+              </AchievementsList>
+            </ContentContainer>
+          </Card>
         </AnimatedTimelineItem>
 
-        <AnimatedTimelineItem >
-          <StudyCard>
+        <AnimatedTimelineItem>
+          <Card>
             <LogoContainer zoom={100}>
               <img src={kitLogo} alt="KIT Logo" />
             </LogoContainer>
-            <StudyContent>
-              <Degree>B.Sc. in Mechatronics and Information Technology</Degree>
-              <Institution>Karlsruhe Institute of Technology (KIT)</Institution>
+            <ContentContainer>
+              <Title>B.Sc. in Mechatronics and Information Technology</Title>
+              <Subtitle>Karlsruhe Institute of Technology (KIT)</Subtitle>
               <Period>2015 - 2020</Period>
               <Description>
                 Comprehensive foundation in mechatronics: mechanical engineering, electrical engineering, and information technology. Specialization in robotics and medical technology.
@@ -301,15 +254,25 @@ export const Studies = () => {
                 <Tag>Mechatronics</Tag>
                 <Tag>Control Theory</Tag>
                 <Tag>CAD Design</Tag>
-                <Tag>Fluid Dynamics</Tag>
-                <Tag>Manufacturing</Tag>
+                <Tag>PCB Design</Tag>
+                <Tag>Carbon Fiber Manufacturing</Tag>
               </Tags>
-              <Achievements>
-                <li>Excellence Scholarship Recipient</li>
+              <AchievementsList>
+                <li>Award: {''}
+                  <InteractiveLink to="/awards#studienstiftung">
+                    German Academic Scholarship Foundation
+                  </InteractiveLink>
+                </li>
+                <li>
+                  Project: {''}
+                  <InteractiveLink to="/projects#ka-raceing">
+                    "Formula Student Team Lead KA-RaceIng e.V."
+                  </InteractiveLink>
+                </li>
                 <li>
                   Working Student at{' '}
                   <InteractiveLink to="/experience#fraunhofer">
-                    Fraunhofer Institute for New Drive Systems(NAS-ICT)
+                    Fraunhofer Institute for New Drive Systems (NAS-ICT)
                   </InteractiveLink>
                 </li>
                 <li>
@@ -318,35 +281,46 @@ export const Studies = () => {
                     "Indoor Navigation for unmanned aerial vehicles (UAVs)"
                   </InteractiveLink>
                 </li>
-              </Achievements>
-            </StudyContent>
-          </StudyCard>
+              </AchievementsList>
+            </ContentContainer>
+          </Card>
         </AnimatedTimelineItem>
       
         <AnimatedTimelineItem>
-          <StudyCard>
+          <Card>
             <LogoContainer>
               <img src={dsvLogo} alt="DSV Logo" />
             </LogoContainer>
-            <StudyContent>
-              <Degree>High School Diploma (Abitur / A-Levels)</Degree>
-              <Institution>German School of Valencia (Deustche Schule Valencia)</Institution>
+            <ContentContainer>
+              <Title>High School Diploma (Abitur / A-Levels)</Title>
+              <Subtitle>German School of Valencia (Deustche Schule Valencia)</Subtitle>
               <Period>2013 - 2015</Period>
               <Description>
                 Focus on Mathematics, Physics, Chemistry, Biology and Economics.
               </Description>
-              <Achievements>
-                <li> Chemistry Olympiads:
-                  <InteractiveLink to="/projects#dsv-thesis">
-                    "Regional Participant"
+              <AchievementsList>
+                <li> Competition:
+                  <InteractiveLink to="/projects#dsv-olympiads">
+                    Chemistry Regional Olympiads
                   </InteractiveLink>
                 </li>
-              </Achievements>
-            </StudyContent>
-          </StudyCard>
+                <li> Competition:{' '}
+                  <InteractiveLink to="/experience#dsv-jugend">
+                  Youth Researches (Jugend Forscht)
+                  </InteractiveLink>
+                </li>
+                <li>
+                  Competition: {' '}
+                  <InteractiveLink to="/experience#dsv">
+                  Youth Debates (Jugend Debattiert)
+                  </InteractiveLink>
+                </li>
+              </AchievementsList>
+            </ContentContainer>
+          </Card>
         </AnimatedTimelineItem>
       
       </Timeline>
-    </StudiesContainer>
+    </PageContainer>
   );
 };

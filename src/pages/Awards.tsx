@@ -16,7 +16,7 @@ export const Awards = () => {
   return (
     <div>
       <PageTitle>Awards & Certificates</PageTitle>
-      {/* Add your content */}
+      {/* Add valedictorian in chemistry regional olympiads */}
     </div>
   );
 }; 
