@@ -45,7 +45,14 @@ const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   return (
-    <TimelineItem ref={itemRef}>
+    <TimelineItem 
+      ref={itemRef} 
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.5s ease, transform 0.5s ease',
+      }}
+    >
       <TimelinePoint />
       {children}
     </TimelineItem>
@@ -159,7 +166,7 @@ export const Studies = () => {
               <Subtitle>Center for Digital Technology and Management (CDTM)</Subtitle>
               <Period>2022 - 2023</Period>
               <Description>
-                The CDTM is a joint institution of the Ludwig Maximilian University of Munich (LMU) and the Technical University of Munich (TUM) offering the interdisciplinary add-on study program „Technology Management“ as part of the Elite-Network of Bavaria.
+                The CDTM is a joint institution of the Ludwig Maximilian University of Munich (LMU) and the Technical University of Munich (TUM) offering the interdisciplinary add-on study program "Technology Management" as part of the Elite-Network of Bavaria.
                 Focus on trend research, product development, and business strategy with the goal of becoming a technology entrepreneur.
               </Description>
               <Tags>
