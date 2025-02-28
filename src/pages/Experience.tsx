@@ -6,6 +6,7 @@ export const Experience = () => {
     <PageContainer>
       <PageTitle>Experience</PageTitle>
       <Timeline>
+        
         <TimelineItem>
           <Card>
             <LogoContainer zoom={100}>
@@ -26,7 +27,9 @@ export const Experience = () => {
               <AchievementsList>
                 <li>
                   Project:
-
+                  <InteractiveLink to="/projects#fraunhofer">
+                    Fraunhofer Project
+                  </InteractiveLink>
                 </li>
               </AchievementsList>
             </ContentContainer>

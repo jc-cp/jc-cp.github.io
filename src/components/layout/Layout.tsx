@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ParticlesBackground } from '../ParticlesBackground';
 import profileImage from '../../assets/profile.jpg';
+import { FeaturedProjects } from '../FeaturedProjects';
 
 const LayoutWrapper = styled.div`
   display: grid;
@@ -266,7 +267,8 @@ export const Layout = ({ children }: { children: ReactNode }) => {
 
         <Section>
           <h2>Featured Projects</h2>
-          <p>Showcasing my key projects here.</p>
+          <p>Showcasing my key projects in AI, robotics, and technology innovation.</p>
+          <FeaturedProjects />
         </Section>
       </MainContent>
     </LayoutWrapper>

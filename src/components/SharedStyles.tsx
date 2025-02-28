@@ -1,20 +1,32 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// Page Title Component with white background box
+// Enhanced Page Title Component
 export const PageTitle = styled.h1`
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: ${({ theme }) => theme.spacing.md};
   position: relative;
   display: inline-block;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  color: ${({ theme }) => theme.colors.text.white};
   
+  /* Gradient underline */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+    border-radius: 2px;
+    transform-origin: left;
+    animation: slideIn 0.8s ease forwards;
+  }
+  
+  /* Subtle background */
   &::before {
     content: '';
     position: absolute;
@@ -22,11 +34,36 @@ export const PageTitle = styled.h1`
     left: 0;
     width: 100%;
     height: 100%;
-    background: ${({ theme }) => theme.colors.secondary_background.white}F0;
+    background: ${({ theme }) => theme.colors.secondary_background.white}88;
     backdrop-filter: blur(8px);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     z-index: -1;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Add responsive sizing */
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   }
 `;
 
@@ -245,4 +282,68 @@ export const PageContainer = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
   margin-bottom: ${({ theme }) => theme.spacing.xl};
+`;
+
+// Project component styles
+export const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.md};
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const ProjectCard = styled.div`
+  background: ${({ theme }) => theme.colors.secondary_background.white}CC;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const ProjectImage = styled.div<{ imgUrl: string }>`
+  width: 100%;
+  height: 200px;
+  background-image: url(${props => props.imgUrl});
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease;
+  
+  ${ProjectCard}:hover & {
+    transform: scale(1.05);
+  }
+`;
+
+export const ProjectLinkButton = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+  
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+
+export const ProjectLinksContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `; 
