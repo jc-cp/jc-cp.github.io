@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-// Enhanced Page Title Component
+
 export const PageTitle = styled.h1`
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
@@ -79,8 +79,8 @@ export const TimelinePoint = styled.div`
   position: absolute;
   left: -24px;
   top: 40px;
-  width: 12px;
-  height: 12px;
+  width: 16px; /* Slightly larger */
+  height: 16px;
   background: #4ECDC4;
   border-radius: 50%;
   z-index: 3;
@@ -99,38 +99,38 @@ export const TimelineItem = styled.div`
 `;
 
 export const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [isVisible, setIsVisible] = useState(false);
-    const itemRef = useRef(null);
-  
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          setIsVisible(entry.isIntersecting);
-        },
-        { threshold: 0.2 }
-      );
-  
-      if (itemRef.current) {
-        observer.observe(itemRef.current);
-      }
-  
-      return () => observer.disconnect();
-    }, []);
-  
-    return (
-      <TimelineItem 
-        ref={itemRef} 
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'opacity 0.5s ease, transform 0.5s ease',
-        }}
-      >
-        <TimelinePoint />
-        {children}
-      </TimelineItem>
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
     );
-  };
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <TimelineItem 
+      ref={itemRef} 
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.5s ease, transform 0.5s ease',
+      }}
+    >
+      <TimelinePoint />
+      {children}
+    </TimelineItem>
+  );
+};
 
 // Card Components
 export const Card = styled.div`
@@ -207,8 +207,7 @@ export const PeriodLocation = styled.div`
 `;
 
 // Logo Components
-export const LogoContainer = styled.div<{ zoom?: number }>`
-  width: 80px;
+export const LogoContainer = styled.div<{ zoom?: number }>`  width: 80px;
   height: 80px;
   border-radius: 50%;
   overflow: hidden;

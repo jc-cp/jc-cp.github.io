@@ -31,7 +31,7 @@ export const Experience = () => {
                 </Location>
               </PeriodLocation>
               <Description>
-                Rejoined Ryver.AI to work on downstream tasks that show the economic value of the synthetic generated images. Mainly through segmentation algorithms based in nnUNet and Auto3DSeg frameworks.
+                Rejoined Ryver.AI to work on downstream tasks that show the economic value of the synthetic generated images. Mainly through segmentation algorithms based on nnUNet and Auto3DSeg frameworks.
               </Description>
               <Tags>
                 <Tag>Python</Tag>
