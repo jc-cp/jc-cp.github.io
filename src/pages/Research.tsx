@@ -109,11 +109,12 @@ const ResearchProfilesContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: ${({ theme }) => theme.colors.secondary_background.white}CC;
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: ${({ theme }) => theme.spacing.md};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
 `;
 
 const ProfileText = styled.p`
@@ -217,7 +218,7 @@ export const Research = () => {
       <PageTitle>Research Papers</PageTitle>
       
       <ResearchProfilesContainer>
-        <ProfileText>If you are interested, you can find my complete publication record on the following platforms:</ProfileText>
+        <ProfileText>If you are further interested, you can find my complete publication record on these platforms!</ProfileText>
         <ResearchProfileLinks>
           <ResearchProfileIcon 
             href="https://scholar.google.com/citations?user=oF78J6kAAAAJ&hl=en&oi=ao" 
