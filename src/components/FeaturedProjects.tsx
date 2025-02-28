@@ -25,10 +25,13 @@ const FeaturedProjectsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   margin: ${({ theme }) => theme.spacing.md} 0;
   position: relative;
-  height: 280px;
+  height: 340px;
   overflow: hidden;
+  padding-top: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -109,7 +112,9 @@ const FeaturedControls = styled.div`
   display: flex;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.sm};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  position: relative;
+  bottom: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const ControlDot = styled.button<{ active: boolean }>`
@@ -134,15 +139,16 @@ const ControlDot = styled.button<{ active: boolean }>`
 const ViewAllLink = styled(Link)`
   display: block;
   text-align: center;
-  margin-top: ${({ theme }) => theme.spacing.md};
+  margin-top: 0;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
+  position: relative;
   
   &:hover {
     color: ${({ theme }) => theme.colors.secondary};
-    text-decoration: underline;
   }
 `;
 

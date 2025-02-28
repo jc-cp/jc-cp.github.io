@@ -1,4 +1,3 @@
-import { useState, useRef, useEffect } from 'react';
 import tumLogo from '../assets/studies/tum.png';
 import kitLogo from '../assets/studies/kit.png';
 import dsvLogo from '../assets/studies/dsv.jpg';
@@ -10,8 +9,7 @@ import {
   PageContainer,
   PageTitle,
   Timeline,
-  TimelinePoint,
-  TimelineItem,
+  AnimatedTimelineItem,
   Card,
   LogoContainer,
   ContentContainer,
@@ -29,39 +27,6 @@ import {
 } from '../components/SharedStyles';
 import { FaRegCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
-const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const itemRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <TimelineItem 
-      ref={itemRef} 
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease',
-      }}
-    >
-      <TimelinePoint />
-      {children}
-    </TimelineItem>
-  );
-};
 
 export const Studies = () => {
   return (
@@ -76,7 +41,7 @@ export const Studies = () => {
               <img src={harvardLogo} alt="Harvard Logo" />
             </LogoContainer>
             <ContentContainer>
-              <Title>Visting Researcher</Title>
+              <Title>Research Fellowship</Title>
               <Subtitle>Harvard University</Subtitle>
               <PeriodLocation>
                 <Period>
