@@ -16,6 +16,7 @@ import {
   Tags,
   Tag
 } from "../components/SharedStyles";
+import { researchPapers } from "../data/researchData";
 
 // Research-specific styled components
 const PaperCard = styled(Card)`
@@ -143,65 +144,6 @@ const ResearchProfileIcon = styled.a`
     transform: translateY(-3px);
   }
 `;
-
-// Sample data - replace with your actual publications
-const researchPapers = [
-  {
-    id: "longitudinal-image-segmentation",
-    title: "Longitudinal Image Segmentation of Pediatric Low-Grade Gliomas for Treatment Response Assessment",
-    authors: ["Climent-Pardo, J.C.", "Kann, B.H.", "Haffty, B.", "Smith, J."],
-    journal: "Medical Image Analysis",
-    year: 2023,
-    abstract: "Pediatric low-grade gliomas (pLGGs) present unique challenges for segmentation and treatment response assessment due to their heterogeneous appearance and infiltrative nature. This paper presents a novel deep learning approach for longitudinal segmentation of pLGGs across multiple MRI sequences, enabling more accurate assessment of tumor progression and treatment response. Our model incorporates temporal information across sequential scans to improve segmentation consistency and better capture subtle changes in tumor morphology.",
-    tags: ["Medical Imaging", "Deep Learning", "Longitudinal Analysis", "MRI"],
-    doi: "https://doi.org/10.1234/example.2023.001",
-    pdfUrl: "https://example.com/papers/plgg-segmentation.pdf"
-  },
-  {
-    id: "foundational-model",
-    title: "A Foundational Model for Neurological MRI Classification: Multi-Task Learning Across Brain Pathologies",
-    authors: ["Smith, R.", "Climent-Pardo, J.C.", "Kann, B.H.", "Johnson, T."],
-    journal: "Nature Machine Intelligence",
-    year: 2023,
-    abstract: "We present a novel foundational model for brain MRI analysis that leverages multi-task learning across diverse neurological conditions. By training on a large corpus of brain MRIs annotated for various pathologies, our model learns generalizable features that transfer effectively to downstream tasks with limited training data. The model demonstrates state-of-the-art performance on classification of brain tumors, neurodegenerative disorders, and vascular pathologies, even when fine-tuned on small datasets.",
-    tags: ["Foundation Model", "Brain MRI", "Multi-task Learning", "Transfer Learning"],
-    doi: "https://doi.org/10.1234/example.2023.002",
-    pdfUrl: "https://example.com/papers/brain-foundation-model.pdf"
-  },
-  {
-    id: "efs-estimation",
-    title: "Postoperative Event-Free Survival Prediction in Pediatric Low-Grade Gliomas Using Multimodal Deep Learning",
-    authors: ["Kann, B.H.", "Climent-Pardo, J.C.", "Zhang, L.", "Anderson, K."],
-    journal: "JAMA Oncology",
-    year: 2024,
-    abstract: "Predicting event-free survival (EFS) in pediatric low-grade gliomas remains challenging due to the heterogeneity of tumor behavior. This study develops a multimodal deep learning model that combines MRI radiomics, clinical variables, and molecular markers to predict EFS in postoperative patients. Our approach outperforms conventional prognostic methods and identifies novel imaging biomarkers associated with tumor recurrence and progression.",
-    tags: ["Survival Analysis", "Prognosis", "Multimodal Learning", "Oncology"],
-    doi: "https://doi.org/10.1234/example.2024.001",
-    pdfUrl: "https://example.com/papers/efs-prediction.pdf"
-  },
-  {
-    id: "efs-prediction-preoperatively",
-    title: "Preoperative Risk Stratification in Pediatric Brain Tumors: A Deep Learning Approach",
-    authors: ["Andrews, M.", "Climent-Pardo, J.C.", "Kann, B.H.", "Wilson, S."],
-    journal: "Neuro-Oncology",
-    year: 2024,
-    abstract: "Early risk stratification of pediatric brain tumors before surgical intervention can guide clinical decision-making and improve patient outcomes. This study presents a deep learning framework that analyzes preoperative MRI scans to predict tumor grade, molecular subtypes, and likely clinical course. Our model integrates convolutional and transformer architectures to capture both local and global image features, achieving high accuracy in predicting high-risk tumor characteristics.",
-    tags: ["Risk Stratification", "Preoperative", "Brain Tumors", "Clinical Decision Support"],
-    doi: "https://doi.org/10.1234/example.2024.002",
-    pdfUrl: "https://example.com/papers/preop-risk-stratification.pdf"
-  },
-  {
-    id: "radiology-report-nlp",
-    title: "NeuroBench: A Standardized Benchmark for Natural Language Processing in Neuroradiology Reports",
-    authors: ["Li, W.", "Climent-Pardo, J.C.", "Garcia, M.", "Kann, B.H."],
-    journal: "Radiology: Artificial Intelligence",
-    year: 2024,
-    abstract: "Natural language processing (NLP) in radiology reports has significant potential to improve clinical workflows, research, and quality assurance. However, the lack of standardized benchmarks has hindered progress in this field. We present NeuroBench, a comprehensive benchmark for NLP in neuroradiology reports, consisting of annotated reports for various tasks including entity extraction, report classification, and information retrieval. We evaluate several state-of-the-art language models on this benchmark and identify opportunities for improvement.",
-    tags: ["NLP", "Radiology Reports", "Benchmark", "Clinical Text"],
-    doi: "https://doi.org/10.1234/example.2024.003",
-    pdfUrl: "https://example.com/papers/neurobench.pdf"
-  }
-];
 
 export const Research = () => {
   const [expandedPapers, setExpandedPapers] = useState<Record<string, boolean>>({});
