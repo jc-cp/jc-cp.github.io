@@ -1,4 +1,6 @@
-import { PageTitle, PageContainer, Timeline, AnimatedTimelineItem, Card, LogoContainer, ContentContainer, Title, Subtitle, Period, PeriodLocation, Location, Description, Tags, Tag, AchievementsList, InteractiveLink } from "../components/SharedStyles";
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { PageTitle, PageContainer, Timeline, AnimatedTimelineItem, Card, LogoContainer, ContentContainer, Title, Subtitle, Period, PeriodLocation, Location, Description, Tags, Tag, AchievementsList, InteractiveLink, ExternalLink } from "../components/SharedStyles";
 import fraunhoferLogo from "../assets/experience/fraunhofer.jpg";
 import mriLogo from "../assets/experience/mritum.png";
 import motiusLogo from "../assets/experience/motius.jpeg";
@@ -7,13 +9,35 @@ import bwhLogo from "../assets/experience/harvard_bwh.png";
 import { FaRegCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 export const Experience = () => {
+  const location = useLocation();
+  const experienceRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  // Handle fragment navigation
+  useEffect(() => {
+    // Get the fragment from the URL (without the #)
+    const fragment = location.hash.substring(1);
+    
+    if (fragment && experienceRefs.current[fragment]) {
+      // Scroll to the experience item after a short delay
+      setTimeout(() => {
+        experienceRefs.current[fragment]?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location.hash]);
+
   return (
     <PageContainer>
       <PageTitle>Experience</PageTitle>
       <Timeline>
 
         {/* Ryver.AI */}
-        <AnimatedTimelineItem id="ryver-ai">
+        <AnimatedTimelineItem 
+          id="ryver"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["ryver"] = el}
+        >
           <Card>
             <LogoContainer zoom={90}>
               <img src={ryverLogo} alt="Ryver.AI Logo" style={{ transform: 'translateX(5px)' }} />
@@ -44,7 +68,10 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* BWH and HMS */}
-        <AnimatedTimelineItem id="bwh-hms">
+        <AnimatedTimelineItem 
+          id="bwh-hms"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["bwh-hms"] = el}
+        >
           <Card>
             <LogoContainer zoom={100}>
               <img src={bwhLogo} alt="BWH Logo" />
@@ -118,7 +145,10 @@ export const Experience = () => {
         </AnimatedTimelineItem>
 
         {/* Ryver.AI */}
-        <AnimatedTimelineItem id="ryver-ai-2">
+        <AnimatedTimelineItem 
+          id="ryver-ai-2"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["ryver-ai-2"] = el}
+        >
           <Card>
             <LogoContainer zoom={90}>
               <img src={ryverLogo} alt="Ryver.AI Logo" style={{ transform: 'translateX(5px)' }} />
@@ -150,7 +180,10 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Motius GmbH */}
-        <AnimatedTimelineItem id="motius">
+        <AnimatedTimelineItem 
+          id="motius"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["motius"] = el}
+        >
           <Card>
             <LogoContainer zoom={100}>
               <img src={motiusLogo} alt="Motius Logo" />
@@ -182,7 +215,10 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Klinikum rechts der Isar */}
-        <AnimatedTimelineItem id="mri">
+        <AnimatedTimelineItem 
+          id="tum-mri"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["tum-mri"] = el}
+        >
           <Card>
             <LogoContainer zoom={100}>
               <img src={mriLogo} alt="Klinikum rechts der Isar Logo" />
@@ -224,7 +260,10 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Fraunhofer */}
-        <AnimatedTimelineItem id="fraunhofer">
+        <AnimatedTimelineItem 
+          id="fraunhofer"
+          ref={(el: HTMLDivElement | null) => experienceRefs.current["fraunhofer"] = el}
+        >
           <Card>
             <LogoContainer zoom={100}>
               <img src={fraunhoferLogo} alt="Fraunhofer Logo" />
@@ -241,8 +280,8 @@ export const Experience = () => {
                   Karlsruhe, Germany
                 </Location>
               </PeriodLocation>
-              <Description>Research and developement of a data collection pipeline for electrical vehicles. Focus on automation and generalizability to as many charging stations as possible. Automatized a server-based data collection procedure from an electric charging station through an UDP protocol.
-                Set up a backend for multi-logging purposes based on PostgreSQL. Visualizations with Python and Grafana.
+              <Description>Research and developement of a data collection pipeline for electrical vehicles. Focus on automation and generalizability to as many charging stations as possible. Automatized a server-based data collection procedure
+                 from an electric charging station through an UDP protocol. Set up a backend for multi-logging purposes based on PostgreSQL. Visualizations with Python and Grafana.
               </Description>
               <Tags>
                 <Tag>Software Engineering</Tag>
@@ -250,6 +289,14 @@ export const Experience = () => {
                 <Tag>Python</Tag>
                 <Tag>SQL</Tag>
               </Tags>
+              <AchievementsList>
+                <li>
+                  Website: {''}
+                  <ExternalLink href="https://www.ict.fraunhofer.de/de/komp/nas.html">
+                    Fraunhofer NAS-ICT
+                  </ExternalLink>
+                </li>
+              </AchievementsList>
             </ContentContainer>
           </Card>
         </AnimatedTimelineItem>

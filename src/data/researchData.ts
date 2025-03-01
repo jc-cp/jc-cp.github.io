@@ -99,15 +99,26 @@ export const researchPapers = [
       pdfUrl: ""
     },
     {
+      id: "trend-report-cdtm",
+      title: "Trend Report: Tackling Climate Change in the AI Era",
+      authors: ["CDTM Class of Spring 2022"],
+      journal: "",
+      year: "2022",
+      abstract: "Climate Change is one of the biggest challenges of our time, confronting us with cascading effects if no action is taken now. Global frameworks such as the Paris Agreement illustrate the way towards a carbon-neutral future. Now is the time to deliver on climate commitments and actions. The difficult task, however, is reaching this ambitious goal. One promising solution is using AI and its applications, for example, Robotics and IoT, to push forward data-driven processes, which can be used to better understand past and present events with the goal to identify new ways to tackle climate change. AI has already disrupted many industries. Using AI in sectors such as agriculture, energy and transportation can lead to economic benefits while reducing greenhouse gas emissions. How can we tackle Climate Change with the support of AI solutions? How can this technology be leveraged to create tangible impact and pursue a transformation that creates opportunities for all? How to develop ethical and trustworthy AI systems without a large carbon footprint? This report looks into these questions and provides an understanding of the potential of AI for tackling climate change in the next 20 years. It describes trends (political and legal, economic, social and environmental, technological, business models) that explain the current and upcoming challenges of climate change, identifies potential future scenarios, and innovates new business models, ensuring a balance between sustainability, technology, and future prosperity. The generated business concepts include an urban planning and monitoring simulator, a smart control system for office energy usage, a carbon-negative beef alternative from ambient CO2, AI-powered green microgrids, and an innovative resource-efficient shower system.",
+      tags: ["Trend Report", "Climate Change", "AI", "Scenarios", "Business Models"],
+      doi: "",
+      pdfUrl: "https://www.cdtm.com/publications/tackling_climate_change_in_the_ai_era"
+    },
+    {
       id: "few-shot-image-synthesis",
       title: "Few-shot Image Synthesis",
       authors: ["JCC Pardo"],
       journal: "",
       year: "2022",
       abstract: "In this blog post, the definition and development of image synthesis are generalized, popular methods using GANs are briefly classified and presented, and their performance is compared under different evaluation criteria. The relevant papers are marked at the end as references.",
-      tags: ["WebPost", "Image Synthesis", "GANs"],
+      tags: ["WebPost", "Image Synthesis", "GANs", "Few-shot Learning"],
       doi: "",
-      pdfUrl: ""
+      pdfUrl: "https://collab.dvb.bayern/spaces/TUMdlma/pages/73379885/Few-shot+Image+Synthesis"
     }
   ];
   

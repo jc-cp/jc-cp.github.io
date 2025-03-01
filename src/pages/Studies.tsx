@@ -68,7 +68,7 @@ export const Studies = () => {
                   Courses: Foundations of Biomedical Informatics (BMI 701), Computational Statistics for Biomedical Sciences (BMI 715), Applied Biostatistics (Harvard Catalyst), Harvard Clinical Informatics Lecture Series (HCLS), Natural Language Processing (HMX)
                 </li>
                 <li>
-                  Activities: Harvard Swimming Club, AI in Healthcare Student Association
+                  Activities: <a href="https://soco.college.harvard.edu/257641/home/" target="_blank" rel="noopener noreferrer">Harvard Swimming Club</a>, AI in Healthcare Student Association
                 </li>
               </AchievementsList>
             </ContentContainer>
@@ -181,9 +181,9 @@ export const Studies = () => {
               </Tags>
               <AchievementsList>
                 <li>
-                  Project:
-                  <InteractiveLink to="/projects#cdtm-trend-research">
-                    Trend Research -- "The future of AI and Climate Change"
+                  Research:
+                  <InteractiveLink to="/research#trend-report-cdtm">
+                    Trend Report -- "Tackling Climate Change in the AI Era"
                   </InteractiveLink>
                 </li>
                 <li>
@@ -232,8 +232,14 @@ export const Studies = () => {
               </Tags>
               <AchievementsList>
                 <li>
+                  Research: {''}
+                  <InteractiveLink to="/research#few-shot-image-synthesis">
+                    "Few-shot Image Synthesis"
+                  </InteractiveLink>
+                </li>
+                <li>
                   Working Student:{' '}
-                  <InteractiveLink to="/experience#ryver">
+                  <InteractiveLink to="/experience#ryver-ai-2">
                     Ryver.ai GmbH
                   </InteractiveLink>
                 </li>
@@ -303,7 +309,7 @@ export const Studies = () => {
                 <li>
                   Project: {''}
                   <InteractiveLink to="/projects#grow-founding-contest">
-                    GROW Founding Contest Finalist
+                    Sensus Tech -- GROW Founding Contest Finalist 
                   </InteractiveLink>
                 </li>
                 <li>
