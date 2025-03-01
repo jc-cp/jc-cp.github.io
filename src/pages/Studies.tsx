@@ -35,7 +35,7 @@ export const Studies = () => {
       <Timeline>
 
         {/* Harvard Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="harvard">
           <Card>
             <LogoContainer zoom={90}>
               <img src={harvardLogo} alt="Harvard Logo" />
@@ -76,7 +76,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
 
         {/* UCL Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="ucl">
           <Card>
             <LogoContainer zoom={110}>
               <img src={uclLogo} alt="UCL Logo" />
@@ -107,7 +107,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
           
         {/* BEA Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="bea">
           <Card>
             <LogoContainer zoom={70}>
               <img src={beaLogo} alt="BEA Logo" />
@@ -153,7 +153,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
 
         {/* CDTM Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="cdtm">
           <Card>
             <LogoContainer zoom={100}>
               <img src={cdtmLogo} alt="CDTM Logo" />
@@ -204,7 +204,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
 
         {/* TUM Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="tum">
           <Card>
             <LogoContainer zoom={100}>
               <img src={tumLogo} alt="TUM Logo" />
@@ -261,7 +261,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
 
         {/* KIT Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="kit">
           <Card>
             <LogoContainer zoom={100}>
               <img src={kitLogo} alt="KIT Logo" />
@@ -330,7 +330,7 @@ export const Studies = () => {
         </AnimatedTimelineItem>
       
         {/* DSV Exprience */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="dsv">
           <Card>
             <LogoContainer>
               <img src={dsvLogo} alt="DSV Logo" />

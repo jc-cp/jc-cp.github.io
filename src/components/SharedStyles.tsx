@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, forwardRef } from 'react';
 
 export const PageTitle = styled.h1`
   font-family: 'Poppins', sans-serif;
@@ -98,39 +98,47 @@ export const TimelineItem = styled.div`
   }
 `;
 
-export const AnimatedTimelineItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const itemRef = useRef(null);
+export const AnimatedTimelineItem = forwardRef<HTMLDivElement, { children: React.ReactNode; id?: string }>(
+  ({ children, id }, ref) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const itemRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        { threshold: 0.2 }
+      );
+
+      if (itemRef.current) {
+        observer.observe(itemRef.current);
+      }
+
+      return () => observer.disconnect();
+    }, []);
+
+    return (
+      <TimelineItem 
+        ref={(node) => {
+          // Forward the ref while maintaining our local ref
+          itemRef.current = node;
+          if (typeof ref === 'function') ref(node);
+          else if (ref) ref.current = node;
+        }}
+        id={id}
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'opacity 0.5s ease, transform 0.5s ease',
+        }}
+      >
+        <TimelinePoint />
+        {children}
+      </TimelineItem>
     );
-
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <TimelineItem 
-      ref={itemRef} 
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease',
-      }}
-    >
-      <TimelinePoint />
-      {children}
-    </TimelineItem>
-  );
-};
+  }
+);
 
 // Card Components
 export const Card = styled.div`

@@ -33,7 +33,7 @@ export const researchPapers = [
       pdfUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11183555/"
     },
     {
-      id: "fm-divy",
+      id: "foundational-model",
       title: "A foundation model for generalized brain MRI analysis",
       authors: ["D Tak", "BA Garomsa", "TL Chaunzwa", "A Zapaishchykova", "JC Climent Pardo", "..."],
       journal: "medRxiv, 2024.12.02.24317992",
@@ -77,7 +77,7 @@ export const researchPapers = [
       pdfUrl: "https://www.medrxiv.org/content/10.1101/2024.06.04.24308434v2"
     },
     {
-      id: "ascopubs-jco-2024-abstract",
+      id: "longitudinal-pLGG-tracking",
       title: "Deciphering pediatric low-grade glioma trajectories: Deep learning–based volumetrics for patients under surveillance.",
       authors: ["JC Climent Pardo", "A Zapaishchykova", "A Boyd", "D Tak", "M Mahootiha", "Z Ye", "..."],
       journal: "Journal of Clinical Oncology 42 (16_suppl), 2066-2066",

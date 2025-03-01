@@ -11,9 +11,9 @@ export const Experience = () => {
     <PageContainer>
       <PageTitle>Experience</PageTitle>
       <Timeline>
-        
+
         {/* Ryver.AI */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="ryver-ai">
           <Card>
             <LogoContainer zoom={90}>
               <img src={ryverLogo} alt="Ryver.AI Logo" style={{ transform: 'translateX(5px)' }} />
@@ -44,7 +44,7 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* BWH and HMS */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="bwh-hms">
           <Card>
             <LogoContainer zoom={100}>
               <img src={bwhLogo} alt="BWH Logo" />
@@ -69,11 +69,11 @@ export const Experience = () => {
                   <FaMapMarkerAlt />
                   Munich, Germany (remote)
                 </Location>
-              </PeriodLocation>
+              </PeriodLocation> 
               <Description>
-                Worked on several projects related to pediatric neuro-oncology in the AI in Medicine (AIM) lab. Supervison of MD Benjamin Kann. 
-                Main focus was on longitudinal image segmentation and risk factor analysis for tumor growth prediciton and response assesment. 
-                Other projects included a foundational model for brain-realted classification tasks, EFS estimations, and natural language processing of radiology reports. 
+                Worked on several projects related to pediatric neuro-oncology in the <a href="https://aim.hms.harvard.edu/" target="_blank" rel="noopener noreferrer">AI in Medicine (AIM) lab</a>. Supervision of <a href="https://aim.hms.harvard.edu/team/benjamin-kann" target="_blank" rel="noopener noreferrer">MD Benjamin Kann</a>. 
+                Find me <a href='https://aim.hms.harvard.edu/team/juan-carlos' target="_blank" rel="noopener noreferrer">here</a>! Main focus was on longitudinal image segmentation and risk factor analysis for tumor growth prediction and response assessment. 
+                Other projects included a foundational model for brain-related classification tasks, EFS estimations, and natural language processing of radiology reports. 
               </Description>
               <Tags>
                 <Tag>Python</Tag>
@@ -84,32 +84,32 @@ export const Experience = () => {
             <AchievementsList>
               <li>
                 Paper: {''}
-                <InteractiveLink to="/research#longitudinal-image-segmentation">
-                  Longitudinal Image Segmentation
+                <InteractiveLink to="/research#longitudinal-pLGG-tracking">
+                  Longitudinal pLGG 3D Volumetrics
                 </InteractiveLink>
               </li>
               <li>
                 Paper: {''}
                 <InteractiveLink to="/research#foundational-model">
-                  Foundational Model
+                  MRI Brain Foundational Model
                 </InteractiveLink>
               </li>
               <li>
                 Paper: {''}
-                <InteractiveLink to="/research#efs-estimation">
+                <InteractiveLink to="/research#efs-divy">
                   EFS Prediction PostOperatively
                 </InteractiveLink>
               </li>
               <li>
                 Paper: {''}
-                <InteractiveLink to="/research#efs-prediction-preoperatively">
+                <InteractiveLink to="/research#maryam-mahootiha-lgg">
                   EFS Prediction Preoperatively
                 </InteractiveLink>
               </li>
               <li>
                 Paper: {''}
-                <InteractiveLink to="/research#radiology-report-nlp">
-                  Radiology Report Benchmark
+                <InteractiveLink to="/research#worldmedqa-v">
+                  LLM Radiology Report Benchmark
                 </InteractiveLink>
               </li>
             </AchievementsList>
@@ -118,7 +118,7 @@ export const Experience = () => {
         </AnimatedTimelineItem>
 
         {/* Ryver.AI */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="ryver-ai-2">
           <Card>
             <LogoContainer zoom={90}>
               <img src={ryverLogo} alt="Ryver.AI Logo" style={{ transform: 'translateX(5px)' }} />
@@ -150,7 +150,7 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Motius GmbH */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="motius">
           <Card>
             <LogoContainer zoom={100}>
               <img src={motiusLogo} alt="Motius Logo" />
@@ -182,7 +182,7 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Klinikum rechts der Isar */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="mri">
           <Card>
             <LogoContainer zoom={100}>
               <img src={mriLogo} alt="Klinikum rechts der Isar Logo" />
@@ -224,7 +224,7 @@ export const Experience = () => {
         </AnimatedTimelineItem>
         
         {/* Fraunhofer */}
-        <AnimatedTimelineItem>
+        <AnimatedTimelineItem id="fraunhofer">
           <Card>
             <LogoContainer zoom={100}>
               <img src={fraunhoferLogo} alt="Fraunhofer Logo" />

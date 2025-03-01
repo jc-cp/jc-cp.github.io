@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaRegCalendarAlt, FaQuoteLeft, FaLink, FaFilePdf, FaChevronDown, FaChevronUp, FaUserGraduate } from 'react-icons/fa';
 import { SiOrcid } from 'react-icons/si';
@@ -147,8 +148,33 @@ const ResearchProfileIcon = styled.a`
 
 export const Research = () => {
   const [expandedPapers, setExpandedPapers] = useState<Record<string, boolean>>({});
+  const location = useLocation();
+  const paperRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const togglePaper = (id: string) => {
+  // Handle fragment navigation
+  useEffect(() => {
+    // Get the fragment from the URL (without the #)
+    const fragment = location.hash.substring(1);
+    
+    if (fragment && paperRefs.current[fragment]) {
+      // Expand the paper if it's not already expanded
+      setExpandedPapers(prev => ({
+        ...prev,
+        [fragment]: true
+      }));
+      
+      // Scroll to the paper after a short delay to ensure expansion is complete
+      setTimeout(() => {
+        paperRefs.current[fragment]?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location.hash]);
+
+  // Separate handler for expand/collapse button
+  const handleExpandToggle = (id: string) => {
     setExpandedPapers(prev => ({
       ...prev,
       [id]: !prev[id]
@@ -183,8 +209,12 @@ export const Research = () => {
       
       <Timeline>
         {researchPapers.map((paper) => (
-          <AnimatedTimelineItem key={paper.id}>
-            <PaperCard onClick={() => togglePaper(paper.id)}>
+          <AnimatedTimelineItem 
+            key={paper.id}
+            ref={(el: HTMLDivElement | null) => paperRefs.current[paper.id] = el}
+            id={paper.id}
+          >
+            <PaperCard>
               <ContentContainer>
                 <Title>{paper.title}</Title>
                 <Authors>{paper.authors.join(", ")}</Authors>
@@ -219,10 +249,7 @@ export const Research = () => {
                   </PaperLinks>
                 </AbstractContainer>
                 
-                <ExpandButton onClick={(e) => {
-                  e.stopPropagation();
-                  togglePaper(paper.id);
-                }}>
+                <ExpandButton onClick={() => handleExpandToggle(paper.id)}>
                   {expandedPapers[paper.id] ? (
                     <>
                       <FaChevronUp /> Show Less
