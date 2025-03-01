@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaGithub, FaExternalLinkAlt, FaPlay } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProjectData, projectsData } from '../data/projectsData';
 
 // Animations
@@ -49,6 +49,7 @@ const FeaturedProject = styled.div<{ isEntering: boolean; isLeaving: boolean }>`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   animation: ${props => props.isEntering ? fadeIn : props.isLeaving ? fadeOut : 'none'} 0.5s ease forwards;
+  cursor: pointer;
   
   &:hover {
     transform: translateY(-10px);
@@ -156,6 +157,7 @@ export const FeaturedProjects = () => {
   const [featured, setFeatured] = useState<FeaturedProjectState[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const navigate = useNavigate();
 
   // Initialize featured projects
   useEffect(() => {
@@ -204,6 +206,17 @@ export const FeaturedProjects = () => {
       if (timeoutRef.current) clearInterval(timeoutRef.current);
     };
   }, [activeIndex]);
+
+  // Handle project card click
+  const handleProjectClick = (projectId: string, event: React.MouseEvent) => {
+    // Prevent click if it's on one of the icon links
+    if ((event.target as HTMLElement).closest('a')) {
+      return;
+    }
+    
+    // Navigate to the projects page with the project ID as fragment
+    navigate(`/projects#${projectId}`);
+  };
 
   // Manual rotation control
   const handleDotClick = (index: number) => {
@@ -255,6 +268,7 @@ export const FeaturedProjects = () => {
             key={`${project.id}-${index}`}
             isEntering={project.state === 'entering'}
             isLeaving={project.state === 'leaving'}
+            onClick={(e) => handleProjectClick(project.id, e)}
           >
             <ProjectImage imgUrl={project.imageUrl} />
             <ProjectInfo>
