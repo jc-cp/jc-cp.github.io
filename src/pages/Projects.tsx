@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaGithub, FaExternalLinkAlt, FaPlay } from 'react-icons/fa';
 import { 
@@ -8,7 +9,12 @@ import {
   ProjectCard,
   ProjectImage, 
   ProjectLinkButton, 
-  ProjectLinksContainer
+  ProjectLinksContainer,
+  ContentContainer,
+  Title,
+  Subtitle,
+  Tags,
+  Tag
 } from '../components/SharedStyles';
 import { projectsData } from '../data/projectsData';
 import { Section } from '../components/layout/Layout';
@@ -21,32 +27,10 @@ const ProjectDescription = styled.div`
   flex: 1;
 `;
 
-const ProjectTitle = styled.h3`
-  margin: 0;
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 1.2rem;
-`;
-
 const ProjectContent = styled.p`
   color: ${({ theme }) => theme.colors.text.secondary};
   margin: ${({ theme }) => theme.spacing.sm} 0;
   flex: 1;
-`;
-
-const ProjectTags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.xs};
-  margin-top: ${({ theme }) => theme.spacing.sm};
-`;
-
-const ProjectTag = styled.span`
-  background: ${({ theme }) => theme.colors.secondary}20;
-  color: ${({ theme }) => theme.colors.secondary};
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 500;
 `;
 
 // Filter controls
@@ -75,26 +59,50 @@ const FilterButton = styled.button<{ active: boolean }>`
   }
 `;
 
-export const Projects = () => {
-  const [filter, setFilter] = useState<string>('all');
-  const [filteredProjects, setFilteredProjects] = useState(projectsData);
+// Centered components
+const CenteredTitle = styled(Title)`
+  text-align: center;
+`;
 
-  // Extract unique tags for filtering
+const CenteredSubtitle = styled(Subtitle)`
+  text-align: center;
+`;
+
+const CenteredTags = styled(Tags)`
+  justify-content: center;
+`;
+
+export const Projects = () => {
+  const [filter, setFilter] = useState('all');
+  const location = useLocation();
+  const projectRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  
+  // Handle fragment navigation
+  useEffect(() => {
+    // Get the fragment from the URL (without the #)
+    const fragment = location.hash.substring(1);
+    
+    if (fragment && projectRefs.current[fragment]) {
+      // Scroll to the project after a short delay
+      setTimeout(() => {
+        projectRefs.current[fragment]?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
+  }, [location.hash]);
+  
+  // Filter projects based on selected tag
+  const filteredProjects = filter === 'all' 
+    ? projectsData 
+    : projectsData.filter(project => project.tags.includes(filter));
+  
+  // Get unique tags from all projects
   const allTags = Array.from(
     new Set(projectsData.flatMap(project => project.tags))
-  );
-
-  // Apply filtering
-  useEffect(() => {
-    if (filter === 'all') {
-      setFilteredProjects(projectsData);
-    } else {
-      setFilteredProjects(
-        projectsData.filter(project => project.tags.includes(filter))
-      );
-    }
-  }, [filter]);
-
+  ).sort();
+  
   return (
     <PageContainer>
       <PageTitle>Projects</PageTitle>
@@ -122,34 +130,43 @@ export const Projects = () => {
         
         <ProjectsGrid>
           {filteredProjects.map(project => (
-            <ProjectCard key={project.id}>
+            <ProjectCard 
+              key={project.id}
+              id={project.id}
+              ref={(el: HTMLDivElement | null) => projectRefs.current[project.id] = el}
+            >
               <ProjectImage imgUrl={project.imageUrl} />
-              <ProjectDescription>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectContent>{project.description}</ProjectContent>
-                <ProjectTags>
+              <ContentContainer>
+                <CenteredTitle>{project.title}</CenteredTitle>
+                <CenteredSubtitle>{project.shortDescription}</CenteredSubtitle>
+                
+                <CenteredTags>
                   {project.tags.map(tag => (
-                    <ProjectTag key={`${project.id}-${tag}`}>{tag}</ProjectTag>
+                    <Tag key={`${project.id}-${tag}`}>{tag}</Tag>
                   ))}
-                </ProjectTags>
-                <ProjectLinksContainer>
-                  {project.githubUrl && (
-                    <ProjectLinkButton href={project.githubUrl} target="_blank">
-                      <FaGithub /> GitHub
-                    </ProjectLinkButton>
-                  )}
-                  {project.demoUrl && (
-                    <ProjectLinkButton href={project.demoUrl} target="_blank">
-                      <FaExternalLinkAlt /> Demo
-                    </ProjectLinkButton>
-                  )}
-                  {project.videoUrl && (
-                    <ProjectLinkButton href={project.videoUrl} target="_blank">
-                      <FaPlay /> Video
-                    </ProjectLinkButton>
-                  )}
-                </ProjectLinksContainer>
-              </ProjectDescription>
+                </CenteredTags>
+                
+                <ProjectDescription>
+                  <ProjectContent>{project.description}</ProjectContent>
+                  <ProjectLinksContainer>
+                    {project.githubUrl && (
+                      <ProjectLinkButton href={project.githubUrl} target="_blank">
+                        <FaGithub /> Code
+                      </ProjectLinkButton>
+                    )}
+                    {project.demoUrl && (
+                      <ProjectLinkButton href={project.demoUrl} target="_blank">
+                        <FaExternalLinkAlt /> Demo
+                      </ProjectLinkButton>
+                    )}
+                    {project.videoUrl && (
+                      <ProjectLinkButton href={project.videoUrl} target="_blank">
+                        <FaPlay /> Video
+                      </ProjectLinkButton>
+                    )}
+                  </ProjectLinksContainer>
+                </ProjectDescription>
+              </ContentContainer>
             </ProjectCard>
           ))}
         </ProjectsGrid>

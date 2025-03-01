@@ -76,13 +76,13 @@ export const projectsData: ProjectData[] = [
   {
     id: 'ka-raceing',
     title: 'Formula Student Team Lead',
-    shortDescription: 'Led the KA-RaceIng Formula Student team',
-    description: 'Served as a Team Lead for the KA-RaceIng Formula Student team, managing a group of engineering students in the design, manufacturing, and racing of a high-performance electric racing car. Oversaw technical development, team coordination, and competition strategy.',
-    imageUrl: '/src/assets/projects/formula-student.jpg', // Update with real image path
-    tags: ['Leadership', 'Automotive Engineering', 'Team Management', 'Racing'],
-    demoUrl: 'https://ka-raceing.de',
-    videoUrl: 'https://youtube.com/watch?v=example-racing',
-    featured: false,
-    date: '2019-05'
+    shortDescription: 'Led the electronics team of KA-RaceIng e.V.',
+    description: 'Served as a Team Lead for the KA-RaceIng Formula Student electornics team, managing a group of 12 engineering students in the design, manufacturing, and programming of multiple electronic systems for 3 high-performance racing cars (combustion, electric and autonomous). Oversaw PCB design with Altium, their programming in C++, team coordination, and competition strategy. Main responsibile for the electric car.',
+    imageUrl: '/src/assets/projects/ka-raceing-cars.jpeg', // Update with real image path
+    tags: ['Leadership', 'Electronics', 'Management'],
+    demoUrl: 'https://www.ka-raceing.de/',
+    videoUrl: 'https://www.youtube.com/watch?v=7Z7_H8gz3dQ&pp=ygUKa2EgcmFjZWluZw%3D%3D',
+    featured: true,
+    date: '2018-06'
   }
 ]; 
