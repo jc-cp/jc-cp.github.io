@@ -1,3 +1,10 @@
+import hawkeyeImage from '../assets/projects/hawkeye.png';
+import eurosatImage from '../assets/projects/eurosat_overview_small.jpg';
+import trendSeminarImage from '../assets/projects/trend_seminar.png';
+import qibriImage from '../assets/projects/qibri.jpg';
+import motionCaptureImage from '../assets/projects/motion_capture_test.jpg';
+import kaRaceingImage from '../assets/projects/ka-raceing-cars.jpeg';
+
 export interface ProjectData {
   id: string;
   title: string;
@@ -12,14 +19,13 @@ export interface ProjectData {
   date: string;
 }
 
-// Sample project data - replace with your actual projects
 export const projectsData: ProjectData[] = [
     {
         id: 'hawkeye',
         title: 'Hawkeye -- Your eyes in the urban skies.',
         shortDescription: 'AI-powered drone surveillance system',
         description: 'Hawkeye is an AI-powered drone surveillance system that uses computer vision to detect and track objects in real-time. It is designed to be used in remote areas where traditional surveillance methods are not feasible.',
-        imageUrl: '/src/assets/projects/hawkeye.png', // Update with real image path
+        imageUrl: hawkeyeImage,
         tags: ['Drone Surveillance', 'AI', 'Computer Vision'],
         githubUrl: 'https://github.com/danielsanjosepro/hawkeye',
         demoUrl: 'https://danielsanjosepro.github.io/hawkeye/',
@@ -42,7 +48,7 @@ export const projectsData: ProjectData[] = [
         title: 'Brightly AI',
         shortDescription: 'Predicting land usage from satellite imagery with AI',
         description: 'To be able to implement effective environmental policies, it is critical to first understand how the environment is being used (e.g. industry, farming, forest). In many areas of the world, official data is lacking, meaning it is incredibly difficult to assess the true impact and thus to plan ahead. Brightly AI is a tool that uses satellite imagery to predict land usage and facilitating policy making.',
-        imageUrl: '/src/assets/projects/eurosat_overview_small.jpg', // Update with real image path
+        imageUrl: eurosatImage, 
         tags: ['Satellite Imagery', 'AI', 'Prediction'],
         githubUrl: 'https://github.com/jc-cp/brightly-ai',
         featured: true,
@@ -53,7 +59,7 @@ export const projectsData: ProjectData[] = [
     title: 'Tackling Climate Change in the AI Era',
     shortDescription: 'Trend research on AI applications for climate change mitigation',
     description: 'Comprehensive research project analyzing future trends in AI applications for climate change mitigation and adaptation strategies. The project explored cutting-edge technologies and their potential impact on environmental sustainability.',
-    imageUrl: '/src/assets/projects/trend_seminar.png', // Update with real image path
+    imageUrl: trendSeminarImage, 
     tags: ['Trend Research', 'AI', 'Climate Change', 'Sustainability'],
     demoUrl: 'https://www.cdtm.com/publications/tackling_climate_change_in_the_ai_era',
     featured: true,
@@ -76,7 +82,7 @@ export const projectsData: ProjectData[] = [
     title: 'US Market Entry Strategy',
     shortDescription: 'Business strategy for Austrian startup entering the US market',
     description: 'Developed a comprehensive US market entry strategy for an Austrian startup, including market analysis, competitor research, positioning strategy, and implementation roadmap. The project involved stakeholder interviews, market sizing, and financial projections.',
-    imageUrl: '/src/assets/projects/qibri.jpg', // Update with real image path
+    imageUrl: qibriImage, // Update with real image path
     tags: ['Business Strategy', 'Go-to-Market'],
     demoUrl: 'https://www.qibri.com/',
     featured: false,
@@ -87,7 +93,7 @@ export const projectsData: ProjectData[] = [
     title: 'Indoor UAV Navigation',
     shortDescription: 'Navigation system for unmanned aerial vehicles in indoor environments',
     description: 'Developed a robust navigation system for unmanned aerial vehicles (UAVs) operating in GPS-denied indoor environments. The project implemented a marker-based localization framework and an EKF-SLAM (Extended Kalman Filter Simultaneous Localization and Mapping) using visual and inertial sensors for accurate positioning. Tested in Gazebo simualtion and verified on a real flying drone. ROS/C++ implementation.',
-    imageUrl: '/src/assets/projects/motion_capture_test.jpg', // Update with real image path
+    imageUrl: motionCaptureImage, // Update with real image path
     tags: ['Robotics', 'UAVs', 'SLAM', 'CV', 'ROS'],
     githubUrl: 'https://github.com/yourusername/indoor-uav-navigation',
     videoUrl: 'https://youtube.com/watch?v=example-uav',
@@ -99,7 +105,7 @@ export const projectsData: ProjectData[] = [
     title: 'Formula Student Team Lead',
     shortDescription: 'Led the electronics team of KA-RaceIng e.V.',
     description: 'Served as a Team Lead for the KA-RaceIng Formula Student electornics team, managing a group of 12 engineering students in the design, manufacturing, and programming of multiple electronic systems for 3 high-performance racing cars (combustion, electric and autonomous). Oversaw PCB design with Altium, their programming in C++, team coordination, and competition strategy. Main responsibile for the electric car.',
-    imageUrl: '/src/assets/projects/ka-raceing-cars.jpeg', // Update with real image path
+    imageUrl: kaRaceingImage, // Update with real image path
     tags: ['Leadership', 'Electronics', 'Management'],
     demoUrl: 'https://www.ka-raceing.de/',
     videoUrl: 'https://www.youtube.com/watch?v=7Z7_H8gz3dQ&pp=ygUKa2EgcmFjZWluZw%3D%3D',
