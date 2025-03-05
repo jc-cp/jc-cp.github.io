@@ -11,6 +11,7 @@ import { Projects } from './pages/Projects';
 import { Research } from './pages/Research';
 import { Awards } from './pages/Awards';
 import { Hobbies } from './pages/Hobbies';
+import { UnderConstruction } from './pages/UnderConstruction';
 
 // ScrollToTop component that will scroll to top when route changes
 function ScrollToTop() {
@@ -38,6 +39,7 @@ function App() {
             <Route path="/research" element={<Research />} />
             <Route path="/awards" element={<Awards />} />
             <Route path="/hobbies" element={<Hobbies />} />
+            <Route path="/coming-soon" element={<UnderConstruction />} />
           </Routes>
         </Layout>
       </Router>

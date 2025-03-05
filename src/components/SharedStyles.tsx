@@ -366,20 +366,28 @@ export const ProjectImage = styled.div<{ imgUrl: string }>`
   }
 `;
 
-export const ProjectLinkButton = styled.a`
-  display: flex;
+export const ProjectLinkButton = styled(({ href, children, ...props }: { href: string; children: React.ReactNode; [key: string]: any }) => {
+  // Check if the link is internal (starts with '/')
+  if (href.startsWith('/')) {
+    return <Link to={href} {...props}>{children}</Link>;
+  }
+  // Otherwise, it's an external link
+  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+})`
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  background: ${({ theme }) => theme.colors.primary};
+  padding: 8px 16px;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: all 0.3s;
   
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.secondary};
+    transform: translateY(-2px);
   }
 `;
 
