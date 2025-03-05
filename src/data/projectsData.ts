@@ -4,6 +4,17 @@ import trendSeminarImage from '../assets/projects/trend_seminar.png';
 import qibriImage from '../assets/projects/qibri.jpg';
 import motionCaptureImage from '../assets/projects/motion_capture_test.jpg';
 import kaRaceingImage from '../assets/projects/ka-raceing-cars.jpeg';
+import horyznImage from '../assets/projects/horyzn.jpg';
+import akinaImage from '../assets/projects/akina.png';
+import ribfracImage from '../assets/projects/ribfrac.png';
+import climateClubImage from '../assets/projects/ClimateClub.jpg';
+import kiMsImage from '../assets/projects/KImS.jpg';
+import mriPreprocessingImage from '../assets/projects/mri_pp_tool.jpg';
+import mriSequenceImage from '../assets/projects/mri_sequences.bmp';
+import scribeeImage from '../assets/projects/brain.png';
+import pLGGtrackingImage from '../assets/projects/pLGGtracking.png';
+import TUMaiImage from '../assets/projects/TUMai.jpg';
+
 
 export interface ProjectData {
   id: string;
@@ -37,7 +48,7 @@ export const projectsData: ProjectData[] = [
         title: 'Scribe',
         shortDescription: 'AI-powered thought recording tool',
         description: 'Born in the Hackatum,Scribe is an AI-powered tool for tracking and managing all of your ideas and thoughts, mapping your brain in real-time. With one single click, you can record your thoughts and ideas, and they will be stored in your personal knowledge base.',
-        imageUrl: '/src/assets/projects/brain.png',
+        imageUrl: scribeeImage,
         tags: ['AI', 'Product Dev.'],
         githubUrl: '/coming-soon',
         featured: true,
@@ -48,7 +59,7 @@ export const projectsData: ProjectData[] = [
         title: 'pLGG Tracking Tool',
         shortDescription: 'AI-based system for diagnosis and growth prognosis of pediatric low-grade gliomas',
         description: 'Research and development of a machine learning system for the diagnosis and growth prognosis of pediatric low-grade gliomas (pLGGs) using MR imaging. The project utilized deep learning models for image segmentation and classification to assist medical professionals.',
-        imageUrl: '/src/assets/projects/pLGGtracking.png', // Update with real image path
+        imageUrl: pLGGtrackingImage,
         tags: ['Medical Imaging', 'ML/DL', 'Research'],
         githubUrl: 'https://github.com/jc-cp/mri-longitudinal-analysis',
         featured: true,
@@ -59,7 +70,7 @@ export const projectsData: ProjectData[] = [
         title: 'MRI Preprocessing Tool ',
         shortDescription: 'Automatized and customizable preprocessing tool for MRI images',
         description: 'Developed a tool for the preprocessing of MRI images to prepare them for machine learning tasks. The tool is designed to be used in a clinical setting and is fully customizable to the needs of the user providing a user-friendly interface.',
-        imageUrl: '/src/assets/projects/mri_pp_tool.jpg', // Update with real image path
+        imageUrl: mriPreprocessingImage,
         tags: ['Medical Imaging', 'ML/DL', 'Research'],
         githubUrl: 'https://github.com/jc-cp/mri_preprocessing',
         featured: true,
@@ -70,7 +81,7 @@ export const projectsData: ProjectData[] = [
         title: 'MRI Sequence Classification',
         shortDescription: 'Classification of MRI images into one of four modilities.',
         description: 'Developed a tool for the classification of MRI sequences using pretrained deep learning models. The toold classifies the image into one of four modalities: T1, T1c, T2, and T2-FLAIR, or none of these.',
-        imageUrl: '/src/assets/projects/mri_sequences.bmp',
+        imageUrl: mriSequenceImage,
         tags: ['Medical Imaging', 'ML/DL', 'Research'],
         githubUrl: 'https://github.com/AIM-KannLab/mri-sequence-inference',
         featured: true,
@@ -81,7 +92,7 @@ export const projectsData: ProjectData[] = [
         title: 'TUM.ai',
         shortDescription: 'Member at venture team of TUM.ai.',
         description: 'TUM.ai is a student initiative at the Technical University Munich that develops workshops, events and AI solutions for partners. Co-organized the AI Entrepreneurship Lab, a 14-week program for students to develop their own AI startup.',
-        imageUrl: '/src/assets/projects/TUMai.jpg',
+        imageUrl: TUMaiImage,
         tags: ['Product Dev.', 'AI'],
         demoUrl: 'https://www.tum-ai.com/',
         featured: false,
@@ -92,7 +103,7 @@ export const projectsData: ProjectData[] = [
         title: 'HORYZN',
         shortDescription: 'Member at the Avionics and Test Flight division.',
         description: 'HORYZN is the first student initiative of the largest faculty in Europe for Aerospace and Geodesy at Technical University Munich. "Prototyping the aerospace of tomorrow" - as our motto already suggests, we deal with innovative concepts from aerospace. Specifically, this means that we design, build, test, and apply fixed-wing eVTOL(electric vertical take-off fixed-wing aircraft) UAVs (Unmanned Aerial Vehicles).',
-        imageUrl: '/src/assets/projects/horyzn.jpg',
+        imageUrl: horyznImage,
         tags: ['UAVs', 'ROS', 'Research'],
         demoUrl: 'https://horyzn.org/',
         featured: true,
@@ -114,7 +125,7 @@ export const projectsData: ProjectData[] = [
         title: 'Rib Fracture Detection and Classification',
         shortDescription: 'Detection and classification of rib fractures in CT images',
         description: 'Developed a tool for the detection and classification of rib fractures in CT images using deep learning models based on a U-Net architecture. Two different heads were used to predict the presence of a fracture and to classify the type of fracture.',
-        imageUrl: '/src/assets/projects/ribfrac.png',
+        imageUrl: ribfracImage,
         tags: ['Medical Imaging', 'ML/DL',],
         githubUrl: '/coming-soon',
         featured: true,
@@ -125,7 +136,7 @@ export const projectsData: ProjectData[] = [
       title: 'CDTM Climate Club',
       shortDescription: 'Member at the CDTM Climate Club.',
       description: 'The CDTM Climate Club is a student initiative at the Technical University Munich that develops tries to raise awareness about climate change and the importance of sustainability in the Munich ecosystem.',
-      imageUrl: '/src/assets/projects/ClimateClub.jpg',
+      imageUrl: climateClubImage,
       tags: ['Product Dev.', 'Climate Change'],
       demoUrl: 'https://www.linkedin.com/company/cdtm-climate-club/about/',
       featured: false,
@@ -147,7 +158,7 @@ export const projectsData: ProjectData[] = [
       title: 'Akina: AI Car Matching Tool',
       shortDescription: 'AI-powered tool for matching users with their ideal car',
       description: 'Developed Akina, an innovative AI-powered car matching tool that helps users find their ideal vehicle based on preferences, lifestyle, and budget. The system uses machine learning algorithms to analyze user inputs and provide personalized recommendations.',
-      imageUrl: '/src/assets/projects/akina.png', // Update with real image path
+      imageUrl: akinaImage, // Update with real image path
       tags: ['Product Dev.', 'ML/DL',],
       githubUrl: 'https://github.com/jc-cp/akina',
       demoUrl: '/coming-soon',
@@ -170,7 +181,7 @@ export const projectsData: ProjectData[] = [
       title: 'KI macht Schule (KImS)',
       shortDescription: 'Member and instructor at the KImS initiative.',
       description: 'KImS is a student initiative part of the German Academic Scholarship Foundation (Studienstiftung des Deutschen Volkes) that develops AI workshops to educate senior members of soiciety as well as high school students.',
-      imageUrl: '/src/assets/projects/KImS.jpg',
+      imageUrl: kiMsImage,
       tags: ['Education', 'AI'],
       demoUrl: 'https://ki-macht-schule.de/',
       featured: false,
