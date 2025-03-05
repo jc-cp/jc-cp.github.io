@@ -29,8 +29,8 @@ export const hobbiesData: HobbyData[] = [
   {
     id: 'triathlon',
     title: 'Triathlon',
-    description: 'Competitive triathlete with the Karlsruher Lemminge university team.',
-    longDescription: "I joined the university triathlon team during my bachelor studies and have been passionate about the sport ever since. I've competed in several Olympic distance triathlons and continue to train regularly. The combination of swimming, cycling, and running provides a perfect balance of endurance training and variety.",
+    description: 'Amateur triathlete now, focusing on olympic and middle distance races. I used to be a competitive triathlete with the Karlsruher Lemminge university team and the TriPuzol team.',
+    longDescription: "I joined the village triathlon team back in high-school during my last year and have been passionate about the sport ever since. Since then I joined the university triathlon team during my bachelor studies I've competed in several olympic distance triathlons and continue to train regularly. Last year I finished my first IRONMAN 70.3 in Mallorca, Spain.",
     imageUrl: triathlonImage,
     tags: ['Swimming', 'Cycling', 'Running'],
     galleryUrls: [
