@@ -14,7 +14,7 @@ import mriSequenceImage from '../assets/projects/mri_sequences.bmp';
 import scribeeImage from '../assets/projects/brain.png';
 import pLGGtrackingImage from '../assets/projects/pLGGtracking.png';
 import TUMaiImage from '../assets/projects/TUMai.jpg';
-
+import sensusImage from '../assets/projects/sensusTech.png';
 
 export interface ProjectData {
   id: string;
@@ -34,7 +34,7 @@ export const projectsData: ProjectData[] = [
     {
         id: 'hawkeye',
         title: 'Hawkeye',
-        shortDescription: 'Your eyes in the urban skies.',
+        shortDescription: 'Your eyes in the urban skies',
         description: 'Born out of the European Defense Tech Hackathon, Hawkeye is an AI-powered drone surveillance system that uses computer vision to detect and track objects in real-time. It is designed to be used in remote areas where traditional surveillance methods are not feasible.',
         imageUrl: hawkeyeImage,
         tags: ['UAVs', 'AI', 'CV'],
@@ -79,7 +79,7 @@ export const projectsData: ProjectData[] = [
     {
         id: 'mri-sequence-classification',
         title: 'MRI Sequence Classification',
-        shortDescription: 'Classification of MRI images into one of four modilities.',
+        shortDescription: 'Classification of MRI images into one of four modilities',
         description: 'Developed a tool for the classification of MRI sequences using pretrained deep learning models. The toold classifies the image into one of four modalities: T1, T1c, T2, and T2-FLAIR, or none of these.',
         imageUrl: mriSequenceImage,
         tags: ['Medical Imaging', 'ML/DL', 'Research'],
@@ -90,7 +90,7 @@ export const projectsData: ProjectData[] = [
     {
         id: 'TUM.ai',
         title: 'TUM.ai',
-        shortDescription: 'Member at venture team of TUM.ai.',
+        shortDescription: 'Member at venture team of TUM.ai',
         description: 'TUM.ai is a student initiative at the Technical University Munich that develops workshops, events and AI solutions for partners. Co-organized the AI Entrepreneurship Lab, a 14-week program for students to develop their own AI startup.',
         imageUrl: TUMaiImage,
         tags: ['Product Dev.', 'AI'],
@@ -101,7 +101,7 @@ export const projectsData: ProjectData[] = [
     {
         id: 'horyzn',
         title: 'HORYZN',
-        shortDescription: 'Member at the Avionics and Test Flight division.',
+        shortDescription: 'Member at the Avionics and Test Flight division',
         description: 'HORYZN is the first student initiative of the largest faculty in Europe for Aerospace and Geodesy at Technical University Munich. "Prototyping the aerospace of tomorrow" - as our motto already suggests, we deal with innovative concepts from aerospace. Specifically, this means that we design, build, test, and apply fixed-wing eVTOL(electric vertical take-off fixed-wing aircraft) UAVs (Unmanned Aerial Vehicles).',
         imageUrl: horyznImage,
         tags: ['UAVs', 'ROS', 'Research'],
@@ -134,7 +134,7 @@ export const projectsData: ProjectData[] = [
     {
       id: 'climate-club',
       title: 'CDTM Climate Club',
-      shortDescription: 'Member at the CDTM Climate Club.',
+      shortDescription: 'Member at the CDTM Climate Club',
       description: 'The CDTM Climate Club is a student initiative at the Technical University Munich that develops tries to raise awareness about climate change and the importance of sustainability in the Munich ecosystem.',
       imageUrl: climateClubImage,
       tags: ['Product Dev.', 'Climate Change'],
@@ -179,7 +179,7 @@ export const projectsData: ProjectData[] = [
     {
       id: 'KImS',
       title: 'KI macht Schule (KImS)',
-      shortDescription: 'Member and instructor at the KImS initiative.',
+      shortDescription: 'Member and instructor at the KImS initiative ',
       description: 'KImS is a student initiative part of the German Academic Scholarship Foundation (Studienstiftung des Deutschen Volkes) that develops AI workshops to educate senior members of soiciety as well as high school students.',
       imageUrl: kiMsImage,
       tags: ['Education', 'AI'],
@@ -190,7 +190,7 @@ export const projectsData: ProjectData[] = [
     {
       id: 'bachelor-thesis',
       title: 'Indoor UAV Navigation',
-      shortDescription: 'Navigation system for unmanned aerial vehicles in indoor environments',
+      shortDescription: 'Navigation system for unmanned aerial vehicles in indoor environment',
       description: 'Developed a robust navigation system for unmanned aerial vehicles (UAVs) operating in GPS-denied indoor environments. The project implemented a marker-based localization framework and an EKF-SLAM (Extended Kalman Filter Simultaneous Localization and Mapping) using visual and inertial sensors for accurate positioning. Tested in Gazebo simualtion and verified on a real flying drone. ROS/C++ implementation.',
       imageUrl: motionCaptureImage, // Update with real image path
       tags: ['UAVs', 'SLAM', 'CV', 'ROS'],
@@ -198,6 +198,17 @@ export const projectsData: ProjectData[] = [
       videoUrl: '/coming-soon',
       featured: true,
       date: '2020-02'
+    },
+    {
+      id: 'sensus',
+      title: 'Sensus Tech',
+      shortDescription: 'High performance velocity measurement sensor for autonomous systems',
+      description: 'Our system is based on a camera and a self developed software in ROS. Our vision is to provide accurate data to increase safety and performance of dynamic systems at an affordable price.',
+      imageUrl: sensusImage,
+      tags: ['ROS', 'CV', 'ML/DL'],
+      demoUrl: 'https://sensustech.webflow.io/',
+      featured: true,
+      date: '2019-11'
     },
     {
       id: 'ka-raceing',

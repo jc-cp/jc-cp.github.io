@@ -11,6 +11,7 @@ import rhodeImage from '../assets/awards/rhode.png';
 import mlpImage from '../assets/awards/MLP.jpeg';
 import hansRudolfImage from '../assets/awards/HR.png';
 import citiImage from '../assets/awards/CITI.png';
+import growImage from '../assets/awards/grow.png';
 
 // Styled components for the Awards page
 const AwardsContainer = styled.div`
@@ -212,10 +213,21 @@ export const Awards = () => {
       date: "2022",
       description: "Completed the recreational yachts skipper formation for which I am allowed to sail within 12 miles from the coast and 24m long vessels.",
       imageUrl: PERImage,
-      imageZoom: 100, // Custom zoom level (90%)
+      imageZoom: 110, // Custom zoom level (90%)
       link: "https://www.transportes.gob.es/marina-mercante/titulaciones/titulaciones-de-recreo/titulos/patron-de-embarcaciones-recreo/patron-de-embarcaciones-de-recreo-per",
       relatedTo: "Hobbies -- Sailing",
       relatedLink: "/hobbies#sailing"
+    },
+    {
+      id: 99,
+      title: "GROW Founding Contest Finalist",
+      date: "2019 - 2020",
+      description: "Became a finalist in the GROW Founding Contest for out project Sensus Tech.",
+      imageUrl: growImage,
+      imageZoom: 120, // Custom zoom level (110%)
+      link: "https://grow.pioniergarage.com/",
+      relatedTo: "Project: Sensus Tech",
+      relatedLink: "/projects#sensus"
     },
     {
       id: 2,
