@@ -295,6 +295,16 @@ const Overlay = styled.div<{ isOpen: boolean }>`
   }
 `;
 
+// Add this function outside the component
+const openEmailClient = (e: React.MouseEvent) => {
+  e.preventDefault();
+  const email = 'jc.climentpardo@gmail.com';
+  const subject = 'Portfolio Contact';
+  const body = 'Hello JC,\n\nI visited your portfolio and would like to connect with you regarding...';
+  
+  window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
 export const Layout = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -380,8 +390,15 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           </AnimatedNavLink>
         </NavLinks>
         <CTAButtons>
-          <PrimaryButton as="a" href="#contact" onClick={closeMenu}>Contact Me</PrimaryButton>
-          <SecondaryButton as="a" href="#projects" onClick={closeMenu}>View My Work</SecondaryButton>
+          <PrimaryButton as="a" href="#" onClick={(e) => {
+            closeMenu();
+            openEmailClient(e);
+          }}>
+            Contact Me
+          </PrimaryButton>
+          <SecondaryButton as="a" href="#projects" onClick={closeMenu}>
+            View My Work
+          </SecondaryButton>
         </CTAButtons>
         <SidebarFooter>
           <p>© 2024 JC Climent. All rights reserved.</p>
