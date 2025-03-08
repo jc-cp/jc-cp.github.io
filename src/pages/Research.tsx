@@ -6,7 +6,6 @@ import { SiOrcid } from 'react-icons/si';
 import { 
   PageTitle, 
   PageContainer, 
-  Timeline, 
   AnimatedTimelineItem, 
   Card, 
   ContentContainer, 
@@ -23,6 +22,10 @@ import { researchPapers } from "../data/researchData";
 const PaperCard = styled(Card)`
   cursor: pointer;
   transition: all 0.3s ease;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+  }
 `;
 
 const Authors = styled.p`
@@ -63,6 +66,11 @@ const PaperLinks = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const LinkButton = styled(ExternalLink)`
@@ -84,6 +92,12 @@ const LinkButton = styled(ExternalLink)`
     &::after {
       transform: scaleX(0);
     }
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 10px 14px;
+    flex: 1 0 40%;
+    justify-content: center;
   }
 `;
 
@@ -117,6 +131,12 @@ const ResearchProfilesContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.md};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   z-index: 1000;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    padding: ${({ theme }) => theme.spacing.sm};
+    text-align: center;
+  }
 `;
 
 const ProfileText = styled.p`
@@ -128,6 +148,12 @@ const ProfileText = styled.p`
 const ResearchProfileLinks = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.md};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const ResearchProfileIcon = styled.a`
@@ -207,7 +233,6 @@ export const Research = () => {
         </ResearchProfileLinks>
       </ResearchProfilesContainer>
       
-      <Timeline>
         {researchPapers.map((paper) => (
           <AnimatedTimelineItem 
             key={paper.id}
@@ -264,7 +289,6 @@ export const Research = () => {
             </PaperCard>
           </AnimatedTimelineItem>
         ))}
-      </Timeline>
     </PageContainer>
   );
 }; 

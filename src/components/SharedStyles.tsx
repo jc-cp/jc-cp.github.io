@@ -11,6 +11,7 @@ export const PageTitle = styled.h1`
   margin-bottom: ${({ theme }) => theme.spacing.xl};
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.text.white};
+  word-break: break-word;
   
   /* Gradient underline */
   &::after {
@@ -61,18 +62,38 @@ export const PageTitle = styled.h1`
   }
   
   /* Add responsive sizing */
-  @media (max-width: 768px) {
-    font-size: 2rem;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1.8rem;
     padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+    width: 100%;
+    text-align: center;
   }
 `;
 
 // Timeline Components
 export const Timeline = styled.div`
   position: relative;
-  padding-left: ${({ theme }) => theme.spacing.xl};
-  overflow: visible;
-  min-height: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: ${({ theme }) => theme.colors.secondary_background.white}88;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    &::after {
+      left: 31px;
+    }
+  }
 `;
 
 export const TimelinePoint = styled.div`
@@ -90,8 +111,8 @@ export const TimelinePoint = styled.div`
 
 export const TimelineItem = styled.div`
   position: relative;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  padding-left: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  padding-left: ${({ theme }) => theme.spacing.lg};
   
   &:last-child {
     margin-bottom: 0;
@@ -142,32 +163,36 @@ export const AnimatedTimelineItem = forwardRef<HTMLDivElement, { children: React
 
 // Card Components
 export const Card = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.secondary_background.white}CC;
-  backdrop-filter: blur(8px);
+  display: flex;
+  background: ${({ theme }) => theme.colors.secondary_background.white}F2;
   border-radius: 12px;
-  padding: ${({ theme }) => theme.spacing.md};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
   }
 `;
 
 // Content Components
 export const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.xs};
+  flex: 1;
+  padding: ${({ theme }) => theme.spacing.md};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 export const Title = styled.h3`
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.text.primary};
+  margin-top: 0;
   margin-bottom: ${({ theme }) => theme.spacing.xs};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1.3rem;
+  }
 `;
 
 export const Subtitle = styled.h4`
@@ -209,26 +234,38 @@ export const Location = styled.span`
 
 export const PeriodLocation = styled.div`
   display: flex;
-  flex-direction: row;
   gap: ${({ theme }) => theme.spacing.md};
-  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing.xs};
+  }
 `;
 
 // Logo Components
-export const LogoContainer = styled.div<{ zoom?: number }>`  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: white;
+export const LogoContainer = styled.div<{ zoom?: number }>`
+  flex: 0 0 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: ${({ theme }) => theme.spacing.md};
+  background: white;
   
   img {
-    width: ${props => props.zoom ? `${props.zoom}%` : '90%'};
-    height: ${props => props.zoom ? `${props.zoom}%` : '90%'};
+    max-width: 100%;
+    max-height: 100px;
     object-fit: contain;
+    zoom: ${props => props.zoom ? `${props.zoom}%` : '140%'};
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex: 0 0 auto;
+    padding: ${({ theme }) => theme.spacing.sm};
+    
+    img {
+      max-height: 80px;
+    }
   }
 `;
 
@@ -237,16 +274,21 @@ export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.xs};
-  margin-top: ${({ theme }) => theme.spacing.sm};
+  margin: ${({ theme }) => theme.spacing.sm} 0;
 `;
 
 export const Tag = styled.span`
-  background: ${({ theme }) => theme.colors.secondary}20;
-  color: ${({ theme }) => theme.colors.secondary};
-  padding: 4px 8px;
-  border-radius: 4px;
+  background: ${({ theme }) => theme.colors.primary}20;
+  color: ${({ theme }) => theme.colors.primary};
+  padding: 4px 10px;
+  border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
 `;
 
 // Links
@@ -323,6 +365,13 @@ export const PageContainer = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
   margin-bottom: ${({ theme }) => theme.spacing.xl};
+  width: 100%;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: ${({ theme }) => theme.spacing.md};
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+    padding: 0 ${({ theme }) => theme.spacing.xs};
+  }
 `;
 
 // Project component styles
@@ -334,6 +383,8 @@ export const ProjectsGrid = styled.div`
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.lg};
+    margin-top: ${({ theme }) => theme.spacing.lg};
   }
 `;
 
@@ -350,6 +401,12 @@ export const ProjectCard = styled.div`
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 `;
 
@@ -377,7 +434,7 @@ export const ProjectLinkButton = styled(({ href, children, ...props }: { href: s
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 10px 16px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   border-radius: 4px;
@@ -389,10 +446,21 @@ export const ProjectLinkButton = styled(({ href, children, ...props }: { href: s
     background-color: ${({ theme }) => theme.colors.secondary};
     transform: translateY(-2px);
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 12px 16px;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const ProjectLinksContainer = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    width: 100%;
+  }
 `; 

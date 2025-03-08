@@ -61,6 +61,19 @@ const ProfileContainer = styled.div`
     color: ${({ theme }) => theme.colors.text.white};
     font-size: 1.1rem;
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-width: 90%;
+    padding: ${({ theme }) => theme.spacing.sm};
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const EnhancedProfilePicture = styled(ProfilePicture)`
@@ -98,6 +111,12 @@ const DisclaimerSection = styled(Section)`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.md};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    text-align: center;
+    gap: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const DisclaimerGif = styled.img`

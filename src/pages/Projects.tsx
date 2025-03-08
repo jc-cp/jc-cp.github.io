@@ -25,12 +25,21 @@ const ProjectDescription = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const ProjectContent = styled.p`
   color: ${({ theme }) => theme.colors.text.secondary};
   margin: ${({ theme }) => theme.spacing.sm} 0;
   flex: 1;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 `;
 
 // Filter controls
@@ -39,6 +48,10 @@ const FilterContainer = styled.div`
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    justify-content: center;
+  }
 `;
 
 const FilterButton = styled.button<{ active: boolean }>`
@@ -56,6 +69,13 @@ const FilterButton = styled.button<{ active: boolean }>`
   &:hover {
     background: ${({ active, theme }) => 
       active ? theme.colors.primary : `${theme.colors.primary}30`};
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    text-align: center;
   }
 `;
 

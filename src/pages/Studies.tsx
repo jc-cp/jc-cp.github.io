@@ -8,7 +8,6 @@ import harvardLogo from '../assets/studies/harvard.png';
 import {
   PageContainer,
   PageTitle,
-  Timeline,
   AnimatedTimelineItem,
   Card,
   LogoContainer,
@@ -32,7 +31,6 @@ export const Studies = () => {
   return (
     <PageContainer>
       <PageTitle>Academic Journey</PageTitle>
-      <Timeline>
 
         {/* Harvard Exprience */}
         <AnimatedTimelineItem id="harvard">
@@ -381,7 +379,6 @@ export const Studies = () => {
           </Card>
         </AnimatedTimelineItem>
       
-      </Timeline>
     </PageContainer>
   );
 };

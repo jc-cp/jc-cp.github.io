@@ -11,6 +11,10 @@ const ContentContainer = styled.div`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.xl} 0;
   z-index: 100;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const GifContainer = styled.div`
@@ -34,6 +38,11 @@ const MessageContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   max-width: 600px;
   width: 100%;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.md};
+    max-width: 90%;
+  }
 `;
 
 const Message = styled.p`

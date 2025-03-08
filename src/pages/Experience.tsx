@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PageTitle, PageContainer, Timeline, AnimatedTimelineItem, Card, LogoContainer, ContentContainer, Title, Subtitle, Period, PeriodLocation, Location, Description, Tags, Tag, AchievementsList, InteractiveLink, ExternalLink } from "../components/SharedStyles";
+import { PageTitle, PageContainer, AnimatedTimelineItem, Card, LogoContainer, ContentContainer, Title, Subtitle, Period, PeriodLocation, Location, Description, Tags, Tag, AchievementsList, InteractiveLink, ExternalLink } from "../components/SharedStyles";
 import fraunhoferLogo from "../assets/experience/fraunhofer.jpg";
 import mriLogo from "../assets/experience/mritum.png";
 import motiusLogo from "../assets/experience/motius.jpeg";
@@ -31,7 +31,6 @@ export const Experience = () => {
   return (
     <PageContainer>
       <PageTitle>Experience</PageTitle>
-      <Timeline>
 
         {/* Ryver.AI */}
         <AnimatedTimelineItem 
@@ -110,32 +109,27 @@ export const Experience = () => {
               </Tags>
             <AchievementsList>
               <li>
-                Paper: {''}
-                <InteractiveLink to="/research#longitudinal-pLGG-tracking">
+                Paper: <InteractiveLink to="/research#longitudinal-pLGG-tracking">
                   Longitudinal pLGG 3D Volumetrics
                 </InteractiveLink>
               </li>
               <li>
-                Paper: {''}
-                <InteractiveLink to="/research#foundational-model">
+                Paper: <InteractiveLink to="/research#foundational-model">
                   MRI Brain Foundational Model
                 </InteractiveLink>
               </li>
               <li>
-                Paper: {''}
-                <InteractiveLink to="/research#efs-divy">
+                Paper: <InteractiveLink to="/research#efs-divy">
                   EFS Prediction PostOperatively
                 </InteractiveLink>
               </li>
               <li>
-                Paper: {''}
-                <InteractiveLink to="/research#maryam-mahootiha-lgg">
+                Paper: <InteractiveLink to="/research#maryam-mahootiha-lgg">
                   EFS Prediction Preoperatively
                 </InteractiveLink>
               </li>
               <li>
-                Paper: {''}
-                <InteractiveLink to="/research#worldmedqa-v">
+                Paper: <InteractiveLink to="/research#worldmedqa-v">
                   LLM Radiology Report Benchmark
                 </InteractiveLink>
               </li>
@@ -301,7 +295,6 @@ export const Experience = () => {
           </Card>
         </AnimatedTimelineItem>
       
-      </Timeline>
     </PageContainer>
   );
 }; 

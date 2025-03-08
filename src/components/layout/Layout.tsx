@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ParticlesBackground } from '../ParticlesBackground';
 import profileImage from '../../assets/profile.jpg';
 import { FeaturedProjects } from '../FeaturedProjects';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const LayoutWrapper = styled.div`
   display: grid;
@@ -11,15 +12,15 @@ const LayoutWrapper = styled.div`
   grid-template-rows: 1fr auto;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.colors.background};
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
 `;
 
-const Sidebar = styled.nav`
+const Sidebar = styled.nav<{ isOpen: boolean }>`
   background: #2c3e50;
   padding: 2rem;
   position: fixed;
@@ -29,14 +30,37 @@ const Sidebar = styled.nav`
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto;
-  z-index: 2;
+  z-index: 1000;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 
-  @media (max-width: 768px) {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 85%;
+    transform: translateX(${props => props.isOpen ? '0' : '-100%'});
+    padding: 1.5rem 1rem;
+  }
+`;
+
+const MobileNavToggle = styled.button`
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: ${({ theme }) => theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -46,6 +70,15 @@ const SidebarFooter = styled.div`
   text-align: center;
   padding-top: ${({ theme }) => theme.spacing.md};
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.8rem;
+    padding-top: ${({ theme }) => theme.spacing.sm};
+    
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
 `;
 
 const MainContent = styled.main`
@@ -61,6 +94,7 @@ const MainContent = styled.main`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-column: 1;
     padding: ${({ theme }) => theme.spacing.sm};
+    padding-top: calc(${({ theme }) => theme.spacing.lg} + 30px);
   }
 `;
 
@@ -72,7 +106,7 @@ const ParticlesContainer = styled.div`
   bottom: 0;
   z-index: 0;
   
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     left: 0;
   }
 `;
@@ -124,7 +158,253 @@ const AnimatedNavLink = styled(Link)`
       transform: scaleX(1);
     }
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1rem;
+    padding: 1rem;
+  }
 `;
+
+const ProfileSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+`;
+
+const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const ProfilePicture = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+const ProfileInfo = styled.div`
+  h2 {
+    color: ${({ theme }) => theme.colors.text.light};
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  p {
+    color: ${({ theme }) => theme.colors.text.light};
+    opacity: 0.8;
+    margin: 0.5rem 0 0;
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    h2 {
+      font-size: 1.3rem;
+    }
+    
+    p {
+      font-size: 0.9rem;
+    }
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: ${({ theme }) => theme.spacing.sm};
+`;
+
+const CTAButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: ${({ theme }) => theme.spacing.xs};
+  }
+`;
+
+const PrimaryButton = styled.button`
+  background: white;
+  color: ${({ theme }) => theme.colors.primary};
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  
+  &:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+`;
+
+const SecondaryButton = styled.button`
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+`;
+
+const Overlay = styled.div<{ isOpen: boolean }>`
+  display: none;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: ${props => props.isOpen ? 'block' : 'none'};
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+`;
+
+export const Layout = ({ children }: { children: ReactNode }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <LayoutWrapper>
+      <MobileNavToggle onClick={toggleMenu}>
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </MobileNavToggle>
+      
+      <Overlay isOpen={isMenuOpen} onClick={closeMenu} />
+      
+      <Sidebar isOpen={isMenuOpen}>
+        <ProfileSection>
+          <ProfileWrapper>
+            <ProfilePicture src={profileImage} alt="JC Climent" />
+            <ProfileInfo>
+              <h2>JC Climent</h2>
+              <p>AI & Robotics Engineer</p>
+            </ProfileInfo>
+          </ProfileWrapper>
+          <SocialLinks>
+            {/* Social links here */}
+          </SocialLinks>
+        </ProfileSection>
+        <NavLinks>
+          <AnimatedNavLink 
+            to="/" 
+            className={location.pathname === '/' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Home
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/experience" 
+            className={location.pathname === '/experience' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Experience
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/studies" 
+            className={location.pathname === '/studies' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Studies
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/projects" 
+            className={location.pathname === '/projects' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Projects
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/research" 
+            className={location.pathname === '/research' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Research
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/hobbies" 
+            className={location.pathname === '/hobbies' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Hobbies
+          </AnimatedNavLink>
+          <AnimatedNavLink 
+            to="/awards" 
+            className={location.pathname === '/awards' ? 'active' : ''}
+            onClick={closeMenu}
+          >
+            Awards & Certificates
+          </AnimatedNavLink>
+        </NavLinks>
+        <CTAButtons>
+          <PrimaryButton as="a" href="#contact" onClick={closeMenu}>Contact Me</PrimaryButton>
+          <SecondaryButton as="a" href="#projects" onClick={closeMenu}>View My Work</SecondaryButton>
+        </CTAButtons>
+        <SidebarFooter>
+          <p>© 2024 JC Climent. All rights reserved.</p>
+          <p>Email: jc.climentpardo@gmail.com</p>
+          <p>Location: Munich, Germany</p>
+        </SidebarFooter>
+      </Sidebar>
+
+      <MainContent>
+        <ParticlesContainer>
+          <ParticlesBackground />
+        </ParticlesContainer>
+        {children}
+
+        <Section>
+          <h2>Featured Projects</h2>
+          <p>Showcasing my key projects in AI, robotics, and technology innovation.</p>
+          <FeaturedProjects />
+        </Section>
+      </MainContent>
+    </LayoutWrapper>
+  );
+};
 
 export const Section = styled.section`
   width: 100%;
@@ -148,129 +428,16 @@ export const Section = styled.section`
   p {
     color: ${({ theme }) => theme.colors.text.secondary};
   }
-`;
-
-const ProfileSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const ProfileWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const ProfilePicture = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-
-const ProfileInfo = styled.div`
-  color: #f0f3bd;
   
-  h2 {
-    margin: 0;
-    font-size: 1.2rem;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.sm};
+    
+    h2 {
+      font-size: 1.4rem;
+    }
+    
+    p {
+      font-size: 0.9rem;
+    }
   }
-  
-  p {
-    margin: 0.5rem 0 0;
-    font-size: 0.9rem;
-  }
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const CTAButtons = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const PrimaryButton = styled.button`
-  padding: 0.8rem 1.5rem;
-  background: #34495e;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  
-  &:hover {
-    background: #2c3e50;
-  }
-`;
-
-const SecondaryButton = styled.button`
-  padding: 0.8rem 1.5rem;
-  background: transparent;
-  color: #ecf0f1;
-  border: 1px solid #ecf0f1;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  
-  &:hover {
-    background: rgba(236, 240, 241, 0.1);
-  }
-`;
-
-export const Layout = ({ children }: { children: ReactNode }) => {
-  return (
-    <LayoutWrapper>
-      <Sidebar>
-        <ProfileSection>
-          <ProfileWrapper>
-            <ProfilePicture src={profileImage} alt="JC Climent" />
-            <ProfileInfo>
-              <h2>JC Climent</h2>
-              <p>AI & Robotics Engineer</p>
-            </ProfileInfo>
-          </ProfileWrapper>
-          <SocialLinks>
-            {/* Move social links here */}
-          </SocialLinks>
-        </ProfileSection>
-        <NavLinks>
-          <AnimatedNavLink to="/">Home</AnimatedNavLink>
-          <AnimatedNavLink to="/experience">Experience</AnimatedNavLink>
-          <AnimatedNavLink to="/studies">Studies</AnimatedNavLink>
-          <AnimatedNavLink to="/projects">Projects</AnimatedNavLink>
-          <AnimatedNavLink to="/research">Research</AnimatedNavLink>
-          <AnimatedNavLink to="/hobbies">Hobbies</AnimatedNavLink>
-          <AnimatedNavLink to="/awards">Awards</AnimatedNavLink>
-        </NavLinks>
-        <CTAButtons>
-          <PrimaryButton as="a" href="#contact">Contact Me</PrimaryButton>
-          <SecondaryButton as="a" href="#projects">View My Work</SecondaryButton>
-        </CTAButtons>
-        <SidebarFooter>
-          <p>© 2024 JC Climent. All rights reserved.</p>
-          <p>Email: jc.climentpardo@gmail.com | Location: Munich, Germany</p>
-        </SidebarFooter>
-      </Sidebar>
-
-      <MainContent>
-        <ParticlesContainer>
-          <ParticlesBackground />
-        </ParticlesContainer>
-        {children}
-
-        <Section>
-          <h2>Featured Projects</h2>
-          <p>Showcasing my key projects in AI, robotics, and technology innovation.</p>
-          <FeaturedProjects />
-        </Section>
-      </MainContent>
-    </LayoutWrapper>
-  );
-}; 
+`; 

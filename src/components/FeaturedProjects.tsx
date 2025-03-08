@@ -36,6 +36,8 @@ const FeaturedProjectsContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
     height: auto;
+    max-height: 600px;
+    align-items: center;
   }
 `;
 
@@ -57,9 +59,13 @@ const FeaturedProject = styled.div<{ isEntering: boolean; isLeaving: boolean }>`
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex: 0 0 auto;
-    width: 100%;
+    width: 90%;
     height: 200px;
     margin: ${({ theme }) => theme.spacing.sm} 0;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 `;
 
@@ -75,15 +81,23 @@ const ProjectImage = styled.div<{ imgUrl: string }>`
 const ProjectInfo = styled.div`
   padding: ${({ theme }) => theme.spacing.sm};
   background: ${({ theme }) => theme.colors.secondary_background.white}F2;
-  height: 40%;
+  height: 30%;
   display: flex;
   flex-direction: column;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const ProjectTitle = styled.h3`
   margin: 0;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.2rem;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1rem;
+  }
 `;
 
 const ProjectBrief = styled.p`
@@ -91,6 +105,14 @@ const ProjectBrief = styled.p`
   font-size: 0.9rem;
   margin: ${({ theme }) => theme.spacing.xs} 0;
   flex: 1;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 `;
 
 const ProjectLinks = styled.div`
@@ -116,11 +138,18 @@ const FeaturedControls = styled.div`
   position: relative;
   bottom: ${({ theme }) => theme.spacing.md};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    bottom: 0;
+    margin-top: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const ControlDot = styled.button<{ active: boolean }>`
-  width: 12px;
-  height: 12px;
+  width: 4px;
+  height: 4px;
+  min-width: 15px;
+  min-height: 15px;
   border-radius: 50%;
   background-color: ${props => props.active 
     ? props.theme.colors.primary 
@@ -134,6 +163,13 @@ const ControlDot = styled.button<{ active: boolean }>`
     background-color: ${props => props.active 
       ? props.theme.colors.primary 
       : `${props.theme.colors.primary}80`};
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 3px;
+    height: 3px;
+    min-width: 15px;
+    min-height: 15px;
   }
 `;
 

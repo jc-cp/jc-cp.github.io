@@ -22,6 +22,10 @@ const CategoryTabs = styled.div`
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    justify-content: center;
+  }
 `;
 
 const CategoryTab = styled.button<{ active: boolean }>`
@@ -41,6 +45,17 @@ const CategoryTab = styled.button<{ active: boolean }>`
       active ? theme.colors.primary : `${theme.colors.primary}30`};
     transform: translateY(-2px);
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    text-align: center;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
 `;
 
 const HobbiesGrid = styled.div`
@@ -50,6 +65,7 @@ const HobbiesGrid = styled.div`
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.md};
   }
 `;
 
@@ -172,6 +188,7 @@ const ModalContent = styled.div`
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 95%;
+    max-height: 85vh;
   }
 `;
 
@@ -213,10 +230,18 @@ const ModalImageBanner = styled.div<{ imgUrl: string }>`
     bottom: 0;
     background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 200px;
+  }
 `;
 
 const ModalBody = styled.div`
   padding: ${({ theme }) => theme.spacing.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.md};
+  }
 `;
 
 const ModalTitle = styled.h2`
@@ -237,6 +262,11 @@ const ModalGallery = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: ${({ theme }) => theme.spacing.xs};
+  }
 `;
 
 const GalleryImage = styled.div<{ imgUrl: string }>`
