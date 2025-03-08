@@ -28,15 +28,15 @@ const FeaturedProjectsContainer = styled.div`
   align-items: flex-start;
   margin: ${({ theme }) => theme.spacing.md} 0;
   position: relative;
-  height: 340px;
+  height: 380px;
   overflow: hidden;
   padding-top: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
     height: auto;
-    max-height: 600px;
+    max-height: 650px;
     align-items: center;
   }
 `;
@@ -81,7 +81,7 @@ const ProjectImage = styled.div<{ imgUrl: string }>`
 const ProjectInfo = styled.div`
   padding: ${({ theme }) => theme.spacing.sm};
   background: ${({ theme }) => theme.colors.secondary_background.white}F2;
-  height: 30%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   
@@ -105,13 +105,14 @@ const ProjectBrief = styled.p`
   font-size: 0.9rem;
   margin: ${({ theme }) => theme.spacing.xs} 0;
   flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 0.8rem;
     -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 `;
 
@@ -136,20 +137,21 @@ const FeaturedControls = styled.div`
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.sm};
   position: relative;
-  bottom: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  transform: translateY(20px);
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    bottom: 0;
-    margin-top: ${({ theme }) => theme.spacing.sm};
+    margin-top: ${({ theme }) => theme.spacing.xs};
+    transform: translateY(10px);
   }
 `;
 
 const ControlDot = styled.button<{ active: boolean }>`
   width: 4px;
   height: 4px;
-  min-width: 15px;
-  min-height: 15px;
+  min-width: 12px;
+  min-height: 12px;
   border-radius: 50%;
   background-color: ${props => props.active 
     ? props.theme.colors.primary 
@@ -168,24 +170,30 @@ const ControlDot = styled.button<{ active: boolean }>`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 3px;
     height: 3px;
-    min-width: 15px;
-    min-height: 15px;
+    min-width: 10px;
+    min-height: 10px;
   }
 `;
 
 const ViewAllLink = styled(Link)`
   display: block;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
   position: relative;
+  font-size: 0.9rem;
+  transform: translateY(30px);
   
   &:hover {
     color: ${({ theme }) => theme.colors.secondary};
+  }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    transform: translateY(20px);
   }
 `;
 
@@ -194,12 +202,12 @@ export const FeaturedProjects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const navigate = useNavigate();
+  const featuredProjectsRef = useRef(projectsData.filter(project => project.featured));
 
   // Initialize featured projects
   useEffect(() => {
     // Get first 3 featured projects
-    const initialFeatured = projectsData
-      .filter(project => project.featured)
+    const initialFeatured = featuredProjectsRef.current
       .slice(0, 3)
       .map(project => ({ ...project, state: 'stable' as const }));
     
@@ -209,10 +217,9 @@ export const FeaturedProjects = () => {
   // Rotate featured projects
   useEffect(() => {
     const rotateFeatured = () => {
-      const featuredProjects = projectsData.filter(project => project.featured);
-      if (featuredProjects.length <= 3) return;
+      if (featuredProjectsRef.current.length <= 3) return;
 
-      const nextIndex = (activeIndex + 1) % featuredProjects.length;
+      const nextIndex = (activeIndex + 1) % featuredProjectsRef.current.length;
       
       setFeatured(prev => {
         const newFeatured = [...prev];
@@ -224,9 +231,25 @@ export const FeaturedProjects = () => {
       // After animation, replace the leaving one with the new one
       setTimeout(() => {
         setFeatured(prev => {
+          // Get the next project that isn't already in the display
+          const currentIds = prev.slice(1).map(p => p.id);
+          let nextProject = featuredProjectsRef.current[nextIndex];
+          
+          // If we have a duplicate, find the next available project
+          if (currentIds.includes(nextProject.id)) {
+            for (let i = 1; i < featuredProjectsRef.current.length; i++) {
+              const candidateIndex = (nextIndex + i) % featuredProjectsRef.current.length;
+              const candidate = featuredProjectsRef.current[candidateIndex];
+              if (!currentIds.includes(candidate.id)) {
+                nextProject = candidate;
+                break;
+              }
+            }
+          }
+          
           const newFeatured = [
             ...prev.slice(1), 
-            { ...featuredProjects[nextIndex], state: 'entering' }
+            { ...nextProject, state: 'entering' }
           ] as FeaturedProjectState[];
           return newFeatured;
         });
@@ -258,8 +281,7 @@ export const FeaturedProjects = () => {
   const handleDotClick = (index: number) => {
     if (timeoutRef.current) clearInterval(timeoutRef.current);
     
-    const featuredProjects = projectsData.filter(project => project.featured);
-    if (index === activeIndex || featuredProjects.length <= 3) return;
+    if (index === activeIndex || featuredProjectsRef.current.length <= 3) return;
     
     // Custom rotation logic
     const rotate = () => {
@@ -271,9 +293,24 @@ export const FeaturedProjects = () => {
 
       setTimeout(() => {
         setFeatured(prev => {
+          // Get the current IDs of the projects that will remain
+          const currentIds = prev.slice(1).map(p => p.id);
+          let targetProject = featuredProjectsRef.current[index];
+          
+          // If the target project is already displayed, find another one
+          if (currentIds.includes(targetProject.id)) {
+            // Try to find a project that's not currently displayed
+            for (let i = 0; i < featuredProjectsRef.current.length; i++) {
+              if (!currentIds.includes(featuredProjectsRef.current[i].id)) {
+                targetProject = featuredProjectsRef.current[i];
+                break;
+              }
+            }
+          }
+          
           const newFeatured = [
             ...prev.slice(1), 
-            { ...featuredProjects[index], state: 'entering' }
+            { ...targetProject, state: 'entering' }
           ] as FeaturedProjectState[];
           return newFeatured;
         });
@@ -333,16 +370,14 @@ export const FeaturedProjects = () => {
       </FeaturedProjectsContainer>
       
       <FeaturedControls>
-        {projectsData
-          .filter(project => project.featured)
-          .map((project, index) => (
-            <ControlDot 
-              key={project.id} 
-              active={index === activeIndex}
-              onClick={() => handleDotClick(index)}
-              aria-label={`View featured project ${index + 1}`}
-            />
-          ))}
+        {featuredProjectsRef.current.map((project, index) => (
+          <ControlDot 
+            key={project.id} 
+            active={index === activeIndex}
+            onClick={() => handleDotClick(index)}
+            aria-label={`View featured project ${index + 1}`}
+          />
+        ))}
       </FeaturedControls>
       
       <ViewAllLink to="/projects">View All Projects</ViewAllLink>
