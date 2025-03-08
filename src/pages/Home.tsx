@@ -179,7 +179,7 @@ export const Home = () => {
         <h2>About Me</h2>
         <p>
           Hey there! I'm Juan Carlos, or Jc, a Robotics & AI Software Engineer passionate about 
-          building revolutionazing solutions in the healthcare and defense space.
+          building revolutionazing projects in the healthcare and defense space. I love to do sports, meet new people, and since recently play chess! 
         </p>
       </Section>
 
@@ -190,7 +190,7 @@ export const Home = () => {
          />
          <div>
            <h2>Disclaimer</h2>
-           <p>This website is a work in progress right now and is not yet fully functional!</p>
+           <p>This website is a work in progress right now and everything may not be fully working (especially links)!</p>
          </div>
        </DisclaimerSection>
 

@@ -72,7 +72,7 @@ export const Experience = () => {
           ref={(el: HTMLDivElement | null) => experienceRefs.current["bwh-hms"] = el}
         >
           <Card>
-            <LogoContainer zoom={100}>
+            <LogoContainer zoom={150}>
               <img src={bwhLogo} alt="BWH Logo" />
             </LogoContainer>
             <ContentContainer>

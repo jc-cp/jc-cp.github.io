@@ -98,15 +98,21 @@ export const Timeline = styled.div`
 
 export const TimelinePoint = styled.div`
   position: absolute;
-  left: -24px;
-  top: 40px;
+  left: -2.5%; /* Center horizontally relative to the timeline */
+  top: 50%; /* Position at the vertical center of the card */
   width: 16px; /* Slightly larger */
   height: 16px;
   background: #4ECDC4;
   border-radius: 50%;
   z-index: 3;
-  transform: translateX(-5px);
+  transform: translate(-50%, -50%); /* Center the dot itself both horizontally and vertically */
   box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2);
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    left: 31px; /* Keep the original left position for mobile */
+    transform: translateX(-5px); /* Keep original transform for mobile */
+    top: 40px; /* Fixed position from top for mobile */
+  }
 `;
 
 export const TimelineItem = styled.div`
@@ -249,19 +255,17 @@ export const LogoContainer = styled.div<{ zoom?: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme }) => theme.spacing.md};
-  background: white;
-  
+  padding: 10px;
+  background-color: white;
   img {
     max-width: 100%;
     max-height: 100px;
     object-fit: contain;
-    zoom: ${props => props.zoom ? `${props.zoom}%` : '140%'};
+    transform: ${props => props.zoom ? `scale(${props.zoom/100})` : 'scale(1)'};
   }
   
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    flex: 0 0 auto;
-    padding: ${({ theme }) => theme.spacing.sm};
+    flex: 0 0 100px;
     
     img {
       max-height: 80px;
